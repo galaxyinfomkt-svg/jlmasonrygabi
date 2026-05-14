@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   Clock,
   DollarSign,
+  MapPin,
   Phone,
   ShieldCheck,
   Star,
@@ -130,8 +131,11 @@ export default async function ServicePage({
         ]}
       />
 
-      {/* HERO with full-bleed image */}
-      <section className="relative isolate overflow-hidden">
+      {/* HERO — homepage style */}
+      <section
+        className="relative min-h-[100svh] overflow-hidden bg-brand-dark isolate"
+        aria-labelledby="srv-h"
+      >
         <div className="absolute inset-0 -z-10">
           <Image
             src={photos.hero.src}
@@ -146,55 +150,103 @@ export default async function ServicePage({
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-dark" />
         </div>
 
-        <div className="container-edge relative pt-12 pb-16 lg:pt-16 lg:pb-24 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-red/15 border border-brand-red/40 rounded-sm text-[0.7rem] uppercase tracking-[0.2em] font-bold text-brand-red backdrop-blur-sm">
-              <Wrench className="h-3.5 w-3.5" />
-              Service · Middlesex County, MA
-            </div>
-            <h1
-              className="mt-5 font-display text-brand-light tracking-tight text-balance"
-              style={{ fontSize: "clamp(2.2rem, 5.2vw, 4.4rem)", lineHeight: 1.04 }}
-            >
-              {svc.longLabel} in <span className="italic text-brand-red">Massachusetts</span>
-            </h1>
-            <p className="mt-5 text-brand-light/80 text-lg leading-relaxed max-w-2xl text-pretty">
-              {baseService?.description || svc.whyNow}
-            </p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a href={site.phoneHref} className="btn-primary">
-                <Phone className="h-4 w-4" />
-                Call {site.phone}
-              </a>
-              <a href="#srv-form" className="btn-ghost">
-                Free Quote <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-
-            {/* Quick stats below CTA */}
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
-              <Stat icon={Clock} label="Duration" value={svc.durationTypical.split("—")[0].trim()} />
-              <Stat icon={DollarSign} label="Cost" value={svc.costRange.split(",")[0]} />
-              <Stat icon={ShieldCheck} label="Lifespan" value={svc.lifespan.split(";")[0]} />
-              <Stat icon={BadgeCheck} label="Warranty" value="Written, multi-year" />
-            </div>
-          </div>
-
-          {/* Form */}
-          <div id="srv-form" className="relative">
-            <div className="bg-brand-light rounded-sm border border-brand-red/30 shadow-2xl p-5 lg:p-6">
-              <div className="absolute -top-3 -left-3 h-12 w-12 bg-brand-red rounded-sm grid place-items-center text-white shadow-red">
-                <Star className="h-5 w-5 fill-white" />
+        <div className="container-edge relative pt-28 pb-16 lg:pt-36 lg:pb-24 min-h-[100svh] flex flex-col justify-center">
+          <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-center">
+            <div className="max-w-2xl">
+              <div className="inline-flex flex-wrap items-center gap-2 bg-brand-red/15 border border-brand-red/40 px-4 py-2 rounded-sm backdrop-blur-sm">
+                <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">
+                  <BadgeCheck className="h-3.5 w-3.5" /> Free Estimates
+                </span>
+                <span className="h-3 w-px bg-brand-red/40" />
+                <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">
+                  <ShieldCheck className="h-3.5 w-3.5" /> Licensed
+                </span>
+                <span className="h-3 w-px bg-brand-red/40" />
+                <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">
+                  <MapPin className="h-3.5 w-3.5" /> Middlesex County
+                </span>
               </div>
-              <div className="mb-4">
-                <div className="text-[0.65rem] uppercase tracking-[0.22em] text-brand-red-deep font-bold">
-                  Free · No Obligation
+
+              <h1
+                id="srv-h"
+                className="mt-6 font-display font-semibold text-brand-light tracking-[-0.025em] text-balance"
+                style={{ fontSize: "clamp(2.1rem, 4.6vw, 4.4rem)", lineHeight: 1.02 }}
+              >
+                {svc.longLabel} in{" "}
+                <span className="italic text-brand-red font-medium">
+                  Massachusetts
+                </span>
+              </h1>
+
+              <p className="mt-6 text-base lg:text-lg text-brand-light/80 leading-relaxed text-pretty max-w-xl">
+                {baseService?.description || svc.whyNow}
+              </p>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <a href={site.phoneHref} className="btn-primary">
+                  <Phone className="h-4 w-4" />
+                  Call {site.phone}
+                </a>
+                <a href="#srv-form" className="btn-ghost">
+                  Get Free Quote <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+
+              {/* Rating row */}
+              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex">
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <Star key={i} className="h-5 w-5 fill-brand-red text-brand-red" />
+                    ))}
+                  </div>
+                  <span className="text-sm text-brand-light/85">
+                    <span className="font-bold text-brand-light">{site.rating.value}</span> ·{" "}
+                    {site.rating.count}+ Google reviews
+                  </span>
                 </div>
-                <h2 className="mt-1 font-display text-2xl text-brand-dark">
-                  Free Estimate for {svc.shortLabel}
-                </h2>
+                <span className="hidden sm:inline h-4 w-px bg-white/20" />
+                <span className="text-xs text-brand-light/65">
+                  No deposit · No pressure
+                </span>
               </div>
-              <LeadConnectorForm height={500} title={`JL Masonry — ${svc.shortLabel}`} />
+            </div>
+
+            {/* RIGHT: Form card */}
+            <div
+              id="srv-form"
+              className="relative w-full max-w-md lg:max-w-none mx-auto"
+            >
+              <div className="absolute -top-3 -left-3 lg:-top-4 lg:-left-4 h-12 w-12 lg:h-14 lg:w-14 bg-brand-red rounded-sm grid place-items-center text-white shadow-red z-10">
+                <Star className="h-5 w-5 lg:h-6 lg:w-6 fill-white" />
+              </div>
+              <div className="relative bg-brand-light rounded-sm border border-brand-red/30 shadow-2xl p-5 lg:p-6 backdrop-blur-md">
+                <div className="mb-4">
+                  <div className="text-[0.65rem] uppercase tracking-[0.22em] text-brand-red-deep font-bold">
+                    Free · No Obligation
+                  </div>
+                  <h2 className="mt-1 font-display text-2xl lg:text-[1.75rem] text-brand-dark leading-tight">
+                    Request a Free Estimate
+                  </h2>
+                  <p className="mt-1.5 text-xs lg:text-sm text-brand-gray">
+                    Takes 60 seconds. We reply within one business day.
+                  </p>
+                </div>
+                <LeadConnectorForm
+                  height={500}
+                  title={`JL Masonry — ${svc.shortLabel}`}
+                />
+                <div className="mt-4 pt-4 border-t border-brand-dark/10 flex items-center justify-between gap-3 text-xs">
+                  <span className="text-brand-gray">Prefer to call?</span>
+                  <a
+                    href={site.phoneHref}
+                    className="inline-flex items-center gap-1.5 text-brand-dark hover:text-brand-red-deep font-bold transition"
+                  >
+                    <Phone className="h-3.5 w-3.5 text-brand-red-deep" />
+                    {site.phone}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
