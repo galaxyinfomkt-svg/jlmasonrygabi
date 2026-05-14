@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   ArrowRight,
   BadgeCheck,
+  Camera,
   CheckCircle2,
   Clock,
   DollarSign,
@@ -16,6 +18,7 @@ import {
 import { cities, citiesBySlug } from "@/lib/cities";
 import { serviceMeta, serviceMetaBySlug } from "@/lib/service-meta";
 import { generateCityService } from "@/lib/content-generator";
+import { getServicePhotos } from "@/lib/service-images";
 import { site } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -81,6 +84,7 @@ export default async function CityServicePage({
   if (!city || !svc) notFound();
 
   const c = generateCityService(city, svc);
+  const photos = getServicePhotos(svc.slug);
   const url = `${site.website}/${city.slug}/${svc.slug}`;
 
   // Related services in same city
@@ -102,10 +106,22 @@ export default async function CityServicePage({
         ]}
       />
 
-      {/* Hero */}
-      <section className="relative bg-brand-dark py-14 lg:py-20" aria-labelledby="cs-h">
-        <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
-        <div className="container-edge relative grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start">
+      {/* Hero with full-bleed service image */}
+      <section className="relative isolate overflow-hidden" aria-labelledby="cs-h">
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src={photos.hero.src}
+            alt={`${svc.shortLabel} by JL Masonry in ${city.name}, ${city.state}`}
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover animate-kenburns"
+          />
+          <div className="absolute inset-0 bg-[rgba(15,15,15,0.8)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/65 to-brand-dark/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-dark" />
+        </div>
+        <div className="container-edge relative pt-12 pb-16 lg:pt-16 lg:pb-24 grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start">
           <div>
             <div className="inline-flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-gold/15 border border-brand-gold/40 rounded-sm text-[0.7rem] uppercase tracking-[0.2em] font-bold text-brand-gold">
@@ -172,8 +188,66 @@ export default async function CityServicePage({
         </div>
       </section>
 
+      {/* GALLERY — recent {service} work, contextualized for this city */}
+      {photos.gallery.length > 0 && (
+        <section className="bg-brand-stone py-14 lg:py-20">
+          <div className="container-edge">
+            <div className="flex items-end justify-between gap-6 flex-wrap mb-8">
+              <div>
+                <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] font-bold text-brand-red">
+                  <Camera className="h-3.5 w-3.5" />
+                  Recent {svc.shortLabel} Work
+                </div>
+                <h2
+                  className="mt-3 font-display text-brand-light"
+                  style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)", lineHeight: 1.08 }}
+                >
+                  Real {svc.searchPhrasePlural} we&apos;ve built around {city.name}
+                </h2>
+              </div>
+              <Link
+                href={`/services/${svc.slug}`}
+                className="text-sm font-bold text-brand-red hover:text-brand-red-light transition inline-flex items-center gap-2"
+              >
+                See all {svc.shortLabel.toLowerCase()} work <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+              {photos.gallery.map((g, i) => (
+                <figure
+                  key={g.src + i}
+                  className={`group relative overflow-hidden rounded-sm bg-brand-dark border border-white/5 hover:border-brand-red/60 transition-all duration-500 ${
+                    i === 0 ? "col-span-2 row-span-2 aspect-square lg:aspect-auto" : "aspect-square"
+                  }`}
+                >
+                  <Image
+                    src={g.src}
+                    alt={g.alt}
+                    fill
+                    sizes={i === 0 ? "(max-width: 1024px) 100vw, 50vw" : "(max-width: 1024px) 50vw, 25vw"}
+                    className="object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/30 to-transparent opacity-70 group-hover:opacity-90 transition" />
+                  {g.caption && (
+                    <figcaption className="absolute inset-x-0 bottom-0 p-3 lg:p-4">
+                      <div className="text-[0.6rem] uppercase tracking-[0.2em] text-brand-red font-bold mb-1">
+                        JL Masonry
+                      </div>
+                      <div className="text-xs lg:text-sm font-semibold text-brand-light leading-snug line-clamp-2">
+                        {g.caption}
+                      </div>
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Body content */}
-      <section className="bg-brand-stone py-16 lg:py-24">
+      <section className="bg-brand-dark py-16 lg:py-24">
         <div className="container-edge grid lg:grid-cols-[1.5fr_1fr] gap-10 lg:gap-14">
           <div className="space-y-12">
             {/* Intro */}
