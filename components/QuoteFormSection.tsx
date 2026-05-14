@@ -74,7 +74,7 @@ export default function QuoteFormSection() {
               </div>
               <a
                 href={site.phoneHref}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-gold hover:text-[#E0B864] transition"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-brand-gold hover:text-[#DC4640] transition"
               >
                 <Phone className="h-4 w-4" />
                 {site.phone}

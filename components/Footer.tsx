@@ -76,7 +76,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-brand-gold font-bold hover:text-[#E0B864] transition"
+                  className="text-brand-gold font-bold hover:text-[#DC4640] transition"
                 >
                   All services →
                 </Link>
@@ -159,7 +159,7 @@ export default function Footer() {
             <div className="h-px flex-1 bg-white/10" />
             <Link
               href="/locations"
-              className="text-xs uppercase tracking-[0.2em] text-brand-gold font-bold hover:text-[#E0B864] transition"
+              className="text-xs uppercase tracking-[0.2em] text-brand-gold font-bold hover:text-[#DC4640] transition"
             >
               View all →
             </Link>
@@ -216,7 +216,7 @@ export default function Footer() {
       <a
         href="#hero"
         aria-label="Back to top"
-        className="absolute right-5 bottom-20 lg:bottom-24 h-11 w-11 grid place-items-center rounded-full bg-brand-gold text-brand-dark shadow-gold hover:scale-110 hover:bg-[#E0B864] transition-all"
+        className="absolute right-5 bottom-20 lg:bottom-24 h-11 w-11 grid place-items-center rounded-full bg-brand-gold text-brand-dark shadow-gold hover:scale-110 hover:bg-[#DC4640] transition-all"
       >
         <ArrowUp className="h-4 w-4" />
       </a>

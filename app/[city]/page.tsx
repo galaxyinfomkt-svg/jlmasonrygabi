@@ -301,7 +301,7 @@ export default async function CityPage({
               <li>
                 <Link
                   href="/locations"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-brand-gold text-brand-dark rounded-sm text-sm font-bold hover:bg-[#E0B864] transition"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-brand-gold text-brand-dark rounded-sm text-sm font-bold hover:bg-[#DC4640] transition"
                 >
                   See all 109 cities →
                 </Link>

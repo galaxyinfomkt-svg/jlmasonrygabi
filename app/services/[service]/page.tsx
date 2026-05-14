@@ -272,7 +272,7 @@ export default async function ServicePage({
                 <li className="pt-2 border-t border-white/5">
                   <Link
                     href="/locations"
-                    className="block text-center py-2 text-brand-gold font-bold text-sm hover:text-[#E0B864]"
+                    className="block text-center py-2 text-brand-gold font-bold text-sm hover:text-[#DC4640]"
                   >
                     See all 109 cities →
                   </Link>
