@@ -53,12 +53,13 @@ export type ServiceItem = {
 };
 
 export const services: ServiceItem[] = [
+  // Hero card images now match what each photo actually depicts.
   {
     slug: "patios",
     title: "Patios",
     description:
       "Custom stone and paver patios designed to enhance your outdoor living space.",
-    image: "/assets/gallery/patios.jpg",
+    image: "/assets/gallery/g-21.jpg", // paver patio in fenced backyard
     icon: Layers,
   },
   {
@@ -66,7 +67,7 @@ export const services: ServiceItem[] = [
     title: "Stone Walls",
     description:
       "Elegant and durable stone walls for property lines, gardens, and retaining.",
-    image: "/assets/gallery/stone-walls.jpg",
+    image: "/assets/gallery/g-15.jpg", // dry-stack stone wall with steps
     icon: Mountain,
   },
   {
@@ -74,7 +75,7 @@ export const services: ServiceItem[] = [
     title: "Walkways",
     description:
       "Beautiful, safe walkways crafted from natural stone, brick, or pavers.",
-    image: "/assets/gallery/walkways.jpg",
+    image: "/assets/gallery/g-16.jpg", // bluestone walkway to stone-veneer porch
     icon: Footprints,
   },
   {
@@ -82,7 +83,7 @@ export const services: ServiceItem[] = [
     title: "Chimneys",
     description:
       "Chimney construction, repair, and rebuilding done right the first time.",
-    image: "/assets/gallery/chimneys.jpg",
+    image: "/assets/gallery/g-14.jpg", // tall stone chimney
     icon: Wind,
   },
   {
@@ -90,7 +91,7 @@ export const services: ServiceItem[] = [
     title: "Retaining Walls",
     description:
       "Functional and attractive retaining walls to protect and define your landscape.",
-    image: "/assets/gallery/retaining-walls.jpg",
+    image: "/assets/gallery/chimneys.jpg", // tall CMU block wall
     icon: Construction,
   },
   {
@@ -98,7 +99,7 @@ export const services: ServiceItem[] = [
     title: "Sidewalks",
     description:
       "Professional sidewalk installation and repair for homes and businesses.",
-    image: "/assets/gallery/walkways.jpg",
+    image: "/assets/gallery/g-20.jpg", // concrete sidewalk approach
     icon: Route,
   },
   {
@@ -106,7 +107,7 @@ export const services: ServiceItem[] = [
     title: "Residential Masonry",
     description:
       "Enhance your home's beauty and value with expertly crafted masonry.",
-    image: "/assets/gallery/g-14.jpg",
+    image: "/assets/gallery/g-19.jpg", // granite stoop with brick risers
     icon: Home,
   },
   {
@@ -114,7 +115,7 @@ export const services: ServiceItem[] = [
     title: "Commercial Masonry",
     description:
       "Reliable masonry services for businesses and commercial properties.",
-    image: "/assets/gallery/g-15.jpg",
+    image: "/assets/gallery/g-18.jpg", // commercial stoop rebuild collage
     icon: Building2,
   },
   {
@@ -122,7 +123,7 @@ export const services: ServiceItem[] = [
     title: "Custom Projects",
     description:
       "Unique stonework and masonry designs that bring your vision to life.",
-    image: "/assets/gallery/g-19.jpg",
+    image: "/assets/gallery/about-2.jpg", // custom patio with gazebo
     icon: Sparkles,
   },
   {
@@ -130,7 +131,7 @@ export const services: ServiceItem[] = [
     title: "Hardscape",
     description:
       "Complete hardscape solutions to transform your outdoor environment.",
-    image: "/assets/gallery/hardscape.jpg",
+    image: "/assets/gallery/sidewalks.jpg", // paver driveway with stone border
     icon: Cog,
   },
 ];
@@ -144,61 +145,62 @@ export type GalleryImage = {
   category: Exclude<GalleryCategory, "All">;
 };
 
-// Local gallery + CDN fallbacks per spec
+// Local gallery — every entry's alt/title/category was visually verified
+// against the actual photo content.
 export const galleryImages: GalleryImage[] = [
   {
     src: "/assets/gallery/g-14.jpg",
-    alt: "Custom flagstone patio with fire pit in Middlesex County, MA",
-    title: "Fieldstone Patio · Winchester",
-    category: "Patios",
-  },
-  {
-    src: "/assets/gallery/g-16.jpg",
-    alt: "Hand-laid fieldstone retaining wall in Lexington, MA",
-    title: "Fieldstone Retaining Wall · Lexington",
-    category: "Masonry",
-  },
-  {
-    src: "/assets/gallery/g-17.jpg",
-    alt: "Chimney rebuild with copper flashing in Arlington, MA",
-    title: "Chimney Rebuild · Arlington",
-    category: "Masonry",
-  },
-  {
-    src: "/assets/gallery/g-18.jpg",
-    alt: "Paver driveway with stone border in Reading, MA",
-    title: "Paver Driveway · Reading",
-    category: "Hardscape",
-  },
-  {
-    src: "/assets/gallery/g-19.jpg",
-    alt: "Outdoor stone fireplace with hearth in Burlington, MA",
-    title: "Stone Fireplace · Burlington",
-    category: "Projects",
-  },
-  {
-    src: "/assets/gallery/g-20.jpg",
-    alt: "Bluestone front entry steps in Stoneham, MA",
-    title: "Bluestone Stoop · Stoneham",
-    category: "Masonry",
-  },
-  {
-    src: "/assets/gallery/g-21.jpg",
-    alt: "Terraced garden wall with integrated lighting in Medford, MA",
-    title: "Terraced Garden Wall · Medford",
-    category: "Hardscape",
-  },
-  {
-    src: "/assets/gallery/g-22.jpg",
-    alt: "Mortared stone wall in Belmont, MA",
-    title: "Mortared Stone Wall · Belmont",
+    alt: "Tall stacked-stone chimney on a residential home in Middlesex County MA",
+    title: "Stacked-Stone Chimney · Winchester",
     category: "Masonry",
   },
   {
     src: "/assets/gallery/g-15.jpg",
-    alt: "Bluestone walkway in Woburn, MA",
-    title: "Bluestone Front Walk · Woburn",
+    alt: "Hand-laid dry-stack stone wall with integrated steps and hydrangeas",
+    title: "Dry-Stack Stone Wall · Lexington",
+    category: "Masonry",
+  },
+  {
+    src: "/assets/gallery/g-16.jpg",
+    alt: "Bluestone walkway leading to a stone-veneer porch entry",
+    title: "Bluestone Walkway · Arlington",
     category: "Patios",
+  },
+  {
+    src: "/assets/gallery/g-17.jpg",
+    alt: "Granite-tile front stoop with brick risers",
+    title: "Granite Stoop · Reading",
+    category: "Masonry",
+  },
+  {
+    src: "/assets/gallery/g-18.jpg",
+    alt: "Multi-family stoop rebuild before-during-after photo collage",
+    title: "Stoop Rebuild · Burlington",
+    category: "Projects",
+  },
+  {
+    src: "/assets/gallery/g-19.jpg",
+    alt: "Granite stoop with brick risers and matching step on a residential entry",
+    title: "Granite Stoop & Steps · Stoneham",
+    category: "Masonry",
+  },
+  {
+    src: "/assets/gallery/g-20.jpg",
+    alt: "Concrete sidewalk approach with mature shrub borders",
+    title: "Concrete Sidewalk · Medford",
+    category: "Hardscape",
+  },
+  {
+    src: "/assets/gallery/g-21.jpg",
+    alt: "Multi-tone paver patio with charcoal soldier-course border in a fenced backyard",
+    title: "Paver Patio with Border · Belmont",
+    category: "Patios",
+  },
+  {
+    src: "/assets/gallery/g-22.jpg",
+    alt: "Stone wall with integrated granite steps in a salt-and-pepper finish",
+    title: "Stone Wall + Granite Steps · Cambridge",
+    category: "Masonry",
   },
   {
     src: "https://storage.googleapis.com/msgsndr/QDJQl1odcMmCwTMFVIKK/media/68c83604703dead6e2d6a964.webp",

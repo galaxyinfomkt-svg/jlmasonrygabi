@@ -1,5 +1,7 @@
-// Photo mapping per service — hero image + gallery (3–5 photos per service).
-// Used by /services/[service] and /[city]/[service] pages.
+// Photo mapping per service.
+// IMPORTANT: file names in /assets/gallery/ were misleading — every photo
+// has been visually inspected and re-mapped below to the SERVICE IT ACTUALLY
+// SHOWS, not what the filename suggests.
 
 export type ServicePhotos = {
   hero: { src: string; alt: string };
@@ -7,121 +9,140 @@ export type ServicePhotos = {
 };
 
 export const servicePhotos: Record<string, ServicePhotos> = {
+  // === PATIOS — paver and stone patios ===
   patios: {
     hero: {
-      src: "/assets/gallery/patios.jpg",
-      alt: "Custom stone patio installation by JL Masonry in Massachusetts",
+      src: "/assets/gallery/g-21.jpg",
+      alt: "Custom paver patio in a fenced backyard by JL Masonry, Middlesex County MA",
     },
     gallery: [
-      { src: "/assets/gallery/g-14.jpg", alt: "Custom flagstone patio with integrated fire pit in Winchester, MA", caption: "Fieldstone patio with fire pit" },
-      { src: "/assets/gallery/g-19.jpg", alt: "Outdoor stone fireplace and patio in Burlington, MA", caption: "Stone fireplace patio" },
-      { src: "/assets/gallery/g-18.jpg", alt: "Paver patio with stone border installation", caption: "Paver patio with stone border" },
-      { src: "/assets/gallery/patios.jpg", alt: "Bluestone patio installation", caption: "Bluestone patio detail" },
+      { src: "/assets/gallery/g-21.jpg", alt: "Multi-tone paver patio with charcoal soldier-course border", caption: "Paver patio with stone border" },
+      { src: "/assets/gallery/patios.jpg", alt: "Elevated paver patio with retaining-block base behind a deck", caption: "Elevated paver patio with stair access" },
+      { src: "/assets/gallery/retaining-walls.jpg", alt: "Large elevated paver patio behind a blue Cape Cod home", caption: "Elevated backyard paver patio" },
+      { src: "/assets/gallery/stone-walls.jpg", alt: "Wide paver patio with stair access from deck", caption: "Custom paver patio with deck stairs" },
     ],
   },
+
+  // === STONE WALLS — natural stone walls (dry-stack / mortared) ===
   "stone-walls": {
     hero: {
-      src: "/assets/gallery/stone-walls.jpg",
-      alt: "Hand-laid stone wall by JL Masonry, Middlesex County MA",
+      src: "/assets/gallery/g-15.jpg",
+      alt: "Hand-laid dry-stack stone wall with integrated steps by JL Masonry, MA",
     },
     gallery: [
-      { src: "/assets/gallery/g-16.jpg", alt: "Hand-laid fieldstone retaining wall in Lexington, MA", caption: "Hand-laid fieldstone wall" },
-      { src: "/assets/gallery/g-22.jpg", alt: "Mortared stone wall in Belmont, MA", caption: "Mortared stone wall" },
-      { src: "/assets/gallery/about-1.jpg", alt: "Mason laying stone by hand", caption: "Hand-selected face stones" },
-      { src: "/assets/gallery/g-21.jpg", alt: "Terraced garden stone wall in Medford, MA", caption: "Terraced garden walls" },
+      { src: "/assets/gallery/g-15.jpg", alt: "Hand-laid dry-stack fieldstone wall with steps and hydrangeas", caption: "Dry-stack stone wall with steps" },
+      { src: "/assets/gallery/about-1.jpg", alt: "Fieldstone stoop with granite tread caps", caption: "Fieldstone stoop with granite caps" },
+      { src: "/assets/gallery/g-22.jpg", alt: "Stone wall with integrated granite steps, salt-and-pepper finish", caption: "Stone wall + granite steps" },
+      { src: "/assets/gallery/g-16.jpg", alt: "Stone-veneer porch with bluestone walkway leading up to it", caption: "Stone-veneer stoop & walkway" },
     ],
   },
+
+  // === WALKWAYS — front walks, paths ===
   walkways: {
     hero: {
-      src: "/assets/gallery/walkways.jpg",
-      alt: "Stone walkway installation by JL Masonry in Massachusetts",
+      src: "/assets/gallery/g-16.jpg",
+      alt: "Bluestone walkway leading to a stone-veneer front entry by JL Masonry, MA",
     },
     gallery: [
-      { src: "/assets/gallery/g-15.jpg", alt: "Bluestone walkway leading to a Colonial home in Woburn, MA", caption: "Bluestone front walk" },
-      { src: "/assets/gallery/g-20.jpg", alt: "Bluestone stoop with brick risers in Stoneham, MA", caption: "Bluestone stoop & steps" },
-      { src: "/assets/gallery/walkways.jpg", alt: "Custom walkway detail with cobble border", caption: "Cobble-edged walkway" },
-      { src: "/assets/gallery/g-22.jpg", alt: "Side-entry walkway with mortared joints", caption: "Mortared paver walkway" },
+      { src: "/assets/gallery/g-16.jpg", alt: "Wide bluestone walkway with granite curbing leading to a stone-veneer porch", caption: "Bluestone walkway + stone porch" },
+      { src: "/assets/gallery/residential.jpg", alt: "Long paver walkway with curved border and landscaped beds", caption: "Curved paver walkway" },
+      { src: "/assets/gallery/sidewalks.jpg", alt: "Paver driveway with stone border edging the front yard", caption: "Paver walkway with planter beds" },
+      { src: "/assets/gallery/g-15.jpg", alt: "Stone wall and step combination flanking a property walk", caption: "Walkway with stone wall sides" },
     ],
   },
+
+  // === CHIMNEYS — rebuilds and stone chimneys ===
   chimneys: {
     hero: {
-      src: "/assets/gallery/chimneys.jpg",
-      alt: "Brick chimney rebuild by JL Masonry in Massachusetts",
+      src: "/assets/gallery/g-14.jpg",
+      alt: "Tall natural stone chimney by JL Masonry on a Massachusetts home build",
     },
     gallery: [
-      { src: "/assets/gallery/g-17.jpg", alt: "Brick chimney rebuild with new copper flashing in Arlington, MA", caption: "Full chimney rebuild with copper flashing" },
-      { src: "/assets/gallery/chimneys.jpg", alt: "Repointed brick chimney with new crown", caption: "Repointing & crown replacement" },
-      { src: "/assets/gallery/g-22.jpg", alt: "Detail of fresh mortar joints on chimney", caption: "Fresh tuckpointing detail" },
+      { src: "/assets/gallery/g-14.jpg", alt: "Tall stacked-stone chimney during exterior installation", caption: "Stacked-stone chimney" },
+      { src: "/assets/gallery/hardscape.jpg", alt: "Custom natural stone chimney shaft with bluestone cap", caption: "Stone chimney with bluestone cap" },
+      { src: "/assets/gallery/walkways.jpg", alt: "Mason rebuilding a stone chimney from scaffolding on a residential roof", caption: "Chimney rebuild in progress" },
     ],
   },
+
+  // === RETAINING WALLS — segmental block, fieldstone, foundations ===
   "retaining-walls": {
     hero: {
-      src: "/assets/gallery/retaining-walls.jpg",
-      alt: "Engineered retaining wall by JL Masonry in Middlesex County MA",
+      src: "/assets/gallery/chimneys.jpg",
+      alt: "Tall CMU block retaining/foundation wall under construction by JL Masonry MA",
     },
     gallery: [
-      { src: "/assets/gallery/g-16.jpg", alt: "Fieldstone retaining wall holding a slope in Lexington, MA", caption: "Fieldstone retaining wall" },
-      { src: "/assets/gallery/g-21.jpg", alt: "Terraced garden wall with integrated steps in Medford, MA", caption: "Terraced wall with steps" },
-      { src: "/assets/gallery/about-2.jpg", alt: "Completed segmental block retaining wall", caption: "Segmental block wall" },
-      { src: "/assets/gallery/retaining-walls.jpg", alt: "Engineered retaining wall hero shot", caption: "Engineered retaining wall" },
+      { src: "/assets/gallery/chimneys.jpg", alt: "Tall block retaining wall along a property line, mid-construction", caption: "Block retaining wall" },
+      { src: "/assets/gallery/g-15.jpg", alt: "Fieldstone retaining wall with integrated steps along a yard edge", caption: "Fieldstone retaining wall + steps" },
+      { src: "/assets/gallery/about-1.jpg", alt: "Fieldstone foundation wall capped with bluestone", caption: "Fieldstone foundation wall" },
+      { src: "/assets/gallery/g-22.jpg", alt: "Stone retaining wall with granite step transitions", caption: "Stone retaining wall + steps" },
     ],
   },
+
+  // === SIDEWALKS — concrete + ADA + paver public walks ===
   sidewalks: {
     hero: {
-      src: "/assets/gallery/sidewalks.jpg",
-      alt: "Concrete and paver sidewalk installation by JL Masonry in Massachusetts",
+      src: "/assets/gallery/g-20.jpg",
+      alt: "Concrete sidewalk approach to a residential entry in Massachusetts",
     },
     gallery: [
-      { src: "/assets/gallery/sidewalks.jpg", alt: "Brushed concrete sidewalk along residential frontage", caption: "Brushed concrete sidewalk" },
-      { src: "/assets/gallery/g-22.jpg", alt: "Paver sidewalk with stone curb in Belmont, MA", caption: "Paver sidewalk with curb" },
-      { src: "/assets/gallery/walkways.jpg", alt: "ADA-compliant sidewalk transition", caption: "ADA transition" },
+      { src: "/assets/gallery/g-20.jpg", alt: "Existing concrete sidewalk approach showing wear, prepped for repour", caption: "Concrete sidewalk (pre-repour)" },
+      { src: "/assets/gallery/residential.jpg", alt: "Newly-installed paver walkway adjacent to a town sidewalk", caption: "Paver walk-to-sidewalk transition" },
+      { src: "/assets/gallery/sidewalks.jpg", alt: "Paver driveway approach with concrete town sidewalk visible", caption: "Driveway-to-sidewalk transition" },
     ],
   },
+
+  // === RESIDENTIAL MASONRY — stoops, steps, hearths, front entries ===
   "residential-masonry": {
     hero: {
-      src: "/assets/gallery/residential.jpg",
-      alt: "Residential masonry project by JL Masonry in Middlesex County MA",
+      src: "/assets/gallery/g-19.jpg",
+      alt: "Granite-tread stoop with brick risers on a residential home by JL Masonry MA",
     },
     gallery: [
-      { src: "/assets/gallery/g-14.jpg", alt: "Custom residential patio and outdoor living area", caption: "Outdoor living area" },
-      { src: "/assets/gallery/g-19.jpg", alt: "Residential stone fireplace and hearth", caption: "Outdoor stone fireplace" },
-      { src: "/assets/gallery/g-20.jpg", alt: "Front entry steps with bluestone treads", caption: "Front entry stonework" },
-      { src: "/assets/gallery/residential.jpg", alt: "Residential masonry detail", caption: "Whole-home masonry" },
+      { src: "/assets/gallery/g-19.jpg", alt: "Granite stoop with brick risers and matching steps", caption: "Granite stoop with brick risers" },
+      { src: "/assets/gallery/g-17.jpg", alt: "Granite-tile front stoop with brick riser detail", caption: "Granite-tile stoop & step" },
+      { src: "/assets/gallery/g-18.jpg", alt: "Stoop rebuild before-during-after collage for a multi-family home", caption: "Stoop rebuild — before/during/after" },
+      { src: "/assets/gallery/about-1.jpg", alt: "Compact fieldstone stoop with granite treads on a residential entry", caption: "Fieldstone & granite stoop" },
     ],
   },
+
+  // === COMMERCIAL MASONRY ===
   "commercial-masonry": {
     hero: {
-      src: "/assets/gallery/commercial.jpg",
-      alt: "Commercial masonry project by JL Masonry in Massachusetts",
+      src: "/assets/gallery/chimneys.jpg",
+      alt: "Tall CMU block wall under construction on a commercial site by JL Masonry MA",
     },
     gallery: [
-      { src: "/assets/gallery/commercial.jpg", alt: "Commercial storefront masonry detail", caption: "Storefront masonry" },
-      { src: "/assets/gallery/g-22.jpg", alt: "Commercial sidewalk and entry stonework", caption: "Commercial walkway" },
-      { src: "/assets/gallery/g-15.jpg", alt: "Multi-family entry masonry", caption: "Multi-family entry" },
+      { src: "/assets/gallery/chimneys.jpg", alt: "Large CMU block wall under construction on commercial site", caption: "Commercial CMU block wall" },
+      { src: "/assets/gallery/g-18.jpg", alt: "Commercial-grade stoop rebuild collage", caption: "Commercial stoop rebuild" },
+      { src: "/assets/gallery/residential.jpg", alt: "Wide paver entry approach for a multi-family property", caption: "Multi-family paver entry" },
     ],
   },
+
+  // === CUSTOM PROJECTS ===
   "custom-projects": {
     hero: {
-      src: "/assets/gallery/custom.jpg",
-      alt: "Custom masonry project by JL Masonry in Massachusetts",
+      src: "/assets/gallery/about-2.jpg",
+      alt: "Custom paver patio with timber gazebo overhead, built by JL Masonry MA",
     },
     gallery: [
-      { src: "/assets/gallery/g-19.jpg", alt: "Custom outdoor stone fireplace", caption: "Custom outdoor fireplace" },
-      { src: "/assets/gallery/g-14.jpg", alt: "Custom fire pit with surrounding patio", caption: "Custom fire pit & patio" },
-      { src: "/assets/gallery/custom.jpg", alt: "Custom designed masonry feature", caption: "Custom design build" },
-      { src: "/assets/gallery/g-21.jpg", alt: "Custom terraced garden with integrated lighting", caption: "Custom terrace with lighting" },
+      { src: "/assets/gallery/about-2.jpg", alt: "Custom paver patio with timber gazebo and lounge seating", caption: "Custom patio with gazebo" },
+      { src: "/assets/gallery/custom.jpg", alt: "Custom pool deck in dark gray pavers around an in-ground pool", caption: "Pool deck pavers" },
+      { src: "/assets/gallery/g-14.jpg", alt: "Custom tall stone chimney detail", caption: "Custom stone chimney" },
+      { src: "/assets/gallery/hardscape.jpg", alt: "Custom natural stone chimney feature with bluestone cap", caption: "Custom stone chimney" },
     ],
   },
+
+  // === HARDSCAPE — full property + driveways ===
   hardscape: {
     hero: {
-      src: "/assets/gallery/hardscape.jpg",
-      alt: "Full property hardscape by JL Masonry in Massachusetts",
+      src: "/assets/gallery/sidewalks.jpg",
+      alt: "Paver driveway with stone border and landscaped beds, JL Masonry MA",
     },
     gallery: [
-      { src: "/assets/gallery/g-18.jpg", alt: "Paver driveway with stone border", caption: "Paver driveway" },
-      { src: "/assets/gallery/g-15.jpg", alt: "Coordinated walkway and patio hardscape", caption: "Coordinated walks & patio" },
-      { src: "/assets/gallery/g-21.jpg", alt: "Terraced hardscape with retaining walls", caption: "Terraced hardscape" },
-      { src: "/assets/gallery/hardscape.jpg", alt: "Full property hardscape master plan", caption: "Full property package" },
+      { src: "/assets/gallery/sidewalks.jpg", alt: "Paver driveway with curved stone border", caption: "Paver driveway" },
+      { src: "/assets/gallery/custom.jpg", alt: "Custom paver pool deck around in-ground pool", caption: "Pool deck hardscape" },
+      { src: "/assets/gallery/residential.jpg", alt: "Coordinated walkway and beds in a custom hardscape package", caption: "Coordinated walks + beds" },
+      { src: "/assets/gallery/about-2.jpg", alt: "Hardscape patio with timber gazebo overhead", caption: "Patio + gazebo hardscape" },
     ],
   },
 };
