@@ -46,8 +46,7 @@ export const servicePhotos: Record<string, ServicePhotos> = {
     gallery: [
       { src: "/assets/gallery/g-16.jpg", alt: "Wide bluestone walkway with granite curbing leading to a stone-veneer porch", caption: "Bluestone walkway + stone porch" },
       { src: "/assets/gallery/residential.jpg", alt: "Long paver walkway with curved border and landscaped beds", caption: "Curved paver walkway" },
-      { src: "/assets/gallery/sidewalks.jpg", alt: "Paver driveway with stone border edging the front yard", caption: "Paver walkway with planter beds" },
-      { src: "/assets/gallery/g-15.jpg", alt: "Stone wall and step combination flanking a property walk", caption: "Walkway with stone wall sides" },
+      { src: "/assets/gallery/sidewalks.jpg", alt: "Paver walkway with stone border edging the front yard", caption: "Paver walkway with planter beds" },
     ],
   },
 
