@@ -23,9 +23,9 @@ export default function Hero() {
           priority
           className="object-cover animate-kenburns"
         />
-        <div className="absolute inset-0 bg-[rgba(28,28,28,0.78)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/60 via-brand-dark/45 to-brand-dark" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/50 to-brand-dark/30" />
+        <div className="absolute inset-0 bg-[rgba(15,15,15,0.35)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-dark" />
       </div>
 
       <div className="container-edge relative pt-28 pb-16 lg:pt-36 lg:pb-24 min-h-[100svh] flex flex-col justify-center">

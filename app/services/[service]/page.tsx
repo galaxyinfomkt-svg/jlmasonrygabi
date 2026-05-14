@@ -141,8 +141,8 @@ export default async function ServicePage({
             priority
             className="object-cover animate-kenburns"
           />
-          <div className="absolute inset-0 bg-[rgba(15,15,15,0.78)]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/65 to-brand-dark/35" />
+          <div className="absolute inset-0 bg-[rgba(15,15,15,0.35)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/55 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-dark" />
         </div>
 
