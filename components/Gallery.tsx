@@ -147,6 +147,7 @@ export default function Gallery() {
                     alt={img.alt}
                     fill
                     sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 420px"
+                    quality={68}
                     className="object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/35 to-transparent" />

@@ -61,6 +61,8 @@ export default function Contact() {
                 alt="Custom JL Masonry stonework in Middlesex County, MA"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={70}
+                loading="lazy"
                 className="object-cover hover:scale-105 transition-transform duration-[2000ms] ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-transparent" />

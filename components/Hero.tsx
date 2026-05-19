@@ -21,6 +21,8 @@ export default function Hero() {
           fill
           sizes="100vw"
           priority
+          fetchPriority="high"
+          quality={70}
           className="object-cover animate-kenburns"
         />
         <div className="absolute inset-0 bg-[rgba(15,15,15,0.35)]" />

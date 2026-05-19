@@ -6,17 +6,19 @@ import "./globals.css";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "600"], // narrowed from 5 weights → 2 (~60% fewer font bytes)
   variable: "--font-playfair",
   display: "swap",
   style: ["normal", "italic"],
+  preload: true,
 });
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "600", "700"], // narrowed from 6 weights → 3
   variable: "--font-inter",
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -70,9 +72,12 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans bg-brand-dark text-brand-light">
         {children}
+        {/* form_embed.js is only needed once the deferred iframe is mounted —
+            lazyOnload pushes it off the critical path. The LeadConnectorForm
+            component lazy-mounts the iframe on first user interaction / scroll. */}
         <Script
           src="https://link.msgsndr.com/js/form_embed.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>

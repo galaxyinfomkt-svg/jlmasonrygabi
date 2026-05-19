@@ -77,6 +77,7 @@ export default function Services() {
                       alt={`${svc.title} by JL Masonry — ${svc.description}`}
                       fill
                       sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      quality={68}
                       className="object-cover transition-transform duration-[1100ms] ease-out group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/55 to-transparent" />
