@@ -171,19 +171,19 @@ export default function Footer() {
                 <div className="text-[0.7rem] uppercase tracking-[0.18em] text-brand-gold font-bold mb-2.5">
                   {region}
                 </div>
-                <ul className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-brand-light/65">
+                <ul className="flex flex-wrap gap-x-2 gap-y-2 text-xs text-brand-light/70">
                   {grouped[region]
                     .sort((a, b) => a.name.localeCompare(b.name))
                     .map((c, i) => (
-                      <li key={c.slug} className="flex items-center gap-3">
+                      <li key={c.slug} className="flex items-center gap-2">
                         <Link
                           href={`/${c.slug}`}
-                          className="hover:text-brand-gold transition"
+                          className="hover:text-brand-gold transition inline-block px-1 py-1.5 min-h-[24px] leading-snug"
                         >
                           {c.name}
                         </Link>
                         {i < grouped[region].length - 1 && (
-                          <span className="text-brand-light/20">·</span>
+                          <span className="text-brand-light/20" aria-hidden="true">·</span>
                         )}
                       </li>
                     ))}
