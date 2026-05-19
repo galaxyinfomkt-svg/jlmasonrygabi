@@ -56,6 +56,21 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Body scroll lock while the mobile drawer is open. Without this iOS Safari
+  // keeps the underlying page scrollable, and the drawer can appear to be
+  // "missing" its content because the body scrolled away while the drawer
+  // was opening.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
@@ -195,7 +210,7 @@ export default function Header() {
             aria-label="Open menu"
             aria-expanded={open}
             onClick={() => setOpen(true)}
-            className="lg:hidden p-2 -mr-2 text-brand-light hover:text-brand-red"
+            className="lg:hidden p-2 -mr-2 text-brand-light hover:text-brand-red active:text-brand-red touch-manipulation cursor-pointer"
           >
             <Menu className="h-6 w-6" />
           </button>
@@ -205,13 +220,15 @@ export default function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="lg:hidden fixed inset-0 z-50"
+            className="lg:hidden fixed inset-0 z-[100]"
+            style={{ height: "100dvh" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
           >
             <div
-              className="absolute inset-0 bg-brand-dark/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-brand-dark/85 backdrop-blur-sm"
               onClick={() => setOpen(false)}
               aria-hidden="true"
             />
@@ -219,8 +236,9 @@ export default function Header() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-brand-stone border-l border-white/10 p-6 flex flex-col overflow-y-auto"
+              transition={{ type: "tween", duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute right-0 top-0 h-full w-full sm:w-[88%] sm:max-w-sm bg-brand-stone border-l border-white/10 p-6 flex flex-col overflow-y-auto overscroll-contain"
+              style={{ height: "100dvh" }}
             >
               <div className="flex items-center justify-between mb-8">
                 <span className="font-display text-xl">Menu</span>
