@@ -82,7 +82,7 @@ export default function CityServiceSchema({ city, service, url }: Props) {
         "@type": "Service",
         serviceType: service.longLabel,
         name: `${service.longLabel} in ${city.name}, ${city.state}`,
-        description: `${service.longLabel} for ${city.name} homeowners. Licensed, insured, and locally trusted. ${service.whyNow}`,
+        description: `${service.longLabel} for ${city.name} homeowners. MA HIC registered, insured, and locally trusted. ${service.whyNow}`,
         provider: { "@id": businessId },
         areaServed: {
           "@type": "City",

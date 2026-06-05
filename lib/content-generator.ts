@@ -54,7 +54,7 @@ export function generateCityService(
 
   // Subheadline variants
   const subVariants = [
-    `Serving ${neighborhood}, ${altNeighborhood}, and all of ${city.name}, ${city.state}. Licensed, insured, and built to last every Massachusetts winter.`,
+    `Serving ${neighborhood}, ${altNeighborhood}, and all of ${city.name}, ${city.state}. MA HIC registered, insured, and built to last every Massachusetts winter.`,
     `From ${neighborhood} to ${altNeighborhood} — we build ${svc.searchPhrasePlural} that hold up to ${city.county} County's freeze-thaw cycles.`,
     `${city.name} homeowners choose JL Masonry for ${svc.searchPhrasePlural} that look right and last decades — not seasons.`,
     `Hand-laid ${svc.searchPhrasePlural} for ${city.name}, ${city.state} — built by the same crew that quotes the job, on the schedule we sign for.`,
@@ -73,7 +73,7 @@ export function generateCityService(
   const whyLocalVariants = [
     `We're based in Woburn and reach ${city.name} on a regular schedule. That means same-day callbacks, on-site estimates within 48 hours, and crews that know which materials handle ${city.county} County conditions best.`,
     `JL Masonry has been serving ${city.name} homeowners for over 15 years. Our crews understand the ${city.architectureStyle.split(",")[0].toLowerCase()} aesthetic that dominates ${neighborhood}, and we stock material samples that match ${city.name}'s historic vocabulary.`,
-    `Choosing a ${svc.shortLabel.toLowerCase()} contractor in ${city.name} means choosing someone who'll show up. We do. Licensed, insured, MA HIC registered — and the same crew you meet at the estimate is the crew that builds the project.`,
+    `Choosing a ${svc.shortLabel.toLowerCase()} contractor in ${city.name} means choosing someone who'll show up. We do. MA HIC registered and insured — and the same crew you meet at the estimate is the crew that builds the project.`,
   ];
   const whyLocal = pick(whyLocalVariants, seed, "w");
 
@@ -142,8 +142,8 @@ export function generateCityService(
   const metaTitle = pick(metaTitleVariants, seed, "mt");
 
   const metaDescVariants = [
-    `Licensed ${svc.searchPhrase} serving ${city.name}, ${city.state}. ${svc.searchPhrasePlural[0].toUpperCase() + svc.searchPhrasePlural.slice(1)} built to last every New England winter. Free estimates. Call (617) 913-9845.`,
-    `JL Masonry builds custom ${svc.searchPhrasePlural} in ${city.name}, MA. ${city.county} County's trusted mason. Licensed & insured. Free quote in 48 hours.`,
+    `MA HIC registered ${svc.searchPhrase} serving ${city.name}, ${city.state}. ${svc.searchPhrasePlural[0].toUpperCase() + svc.searchPhrasePlural.slice(1)} built to last every New England winter. Free estimates. Call (617) 913-9845.`,
+    `JL Masonry builds custom ${svc.searchPhrasePlural} in ${city.name}, MA. ${city.county} County's trusted mason. MA HIC registered and insured. Free quote in 48 hours.`,
     `Expert ${svc.searchPhrasePlural} for ${city.name} homeowners. Serving ${neighborhood}, ${altNeighborhood} & all of ${city.name}. Call (617) 913-9845 for a free estimate.`,
   ];
   const metaDescription = pick(metaDescVariants, seed, "md");

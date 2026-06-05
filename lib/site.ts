@@ -321,7 +321,7 @@ export const faqs = [
   },
   {
     q: "Are you licensed and insured?",
-    a: "Fully licensed and insured for your peace of mind.",
+    a: "Yes — MA HIC registered (Home Improvement Contractor) and fully insured for your peace of mind.",
   },
   {
     q: "How long does a typical project take?",
@@ -335,7 +335,7 @@ export const faqs = [
 
 export const aboutHighlights = [
   "Free, No-Obligation Estimates",
-  "Licensed & Insured",
+  "MA HIC Registered & Insured",
   "Trusted Local Experts in Woburn, MA",
   "Residential & Commercial Projects",
   "Quick & Easy Scheduling",

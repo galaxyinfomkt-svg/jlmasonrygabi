@@ -41,7 +41,7 @@ export async function generateMetadata({
   const photos = getServicePhotos(svc.slug);
   const url = `${site.website}/services/${svc.slug}`;
   const title = `${svc.longLabel} in Eastern Massachusetts | JL Masonry`;
-  const description = `Expert ${svc.searchPhrase} serving 109+ cities across Eastern Massachusetts. ${svc.longLabel} built to last. Licensed & insured. Free estimates: ${site.phone}.`;
+  const description = `Expert ${svc.searchPhrase} serving 109+ cities across Eastern Massachusetts. ${svc.longLabel} built to last. MA HIC registered and insured. Free estimates: ${site.phone}.`;
 
   return {
     title,
@@ -159,7 +159,7 @@ export default async function ServicePage({
                 </span>
                 <span className="h-3 w-px bg-brand-red/40" />
                 <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">
-                  <ShieldCheck className="h-3.5 w-3.5" /> Licensed
+                  <ShieldCheck className="h-3.5 w-3.5" /> MA HIC Registered
                 </span>
                 <span className="h-3 w-px bg-brand-red/40" />
                 <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">

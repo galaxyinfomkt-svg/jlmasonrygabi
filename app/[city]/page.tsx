@@ -111,7 +111,7 @@ export default async function CityPage({
                 </span>
                 <span className="h-3 w-px bg-brand-red/40" />
                 <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">
-                  <ShieldCheck className="h-3.5 w-3.5" /> Licensed
+                  <ShieldCheck className="h-3.5 w-3.5" /> MA HIC Registered
                 </span>
                 <span className="h-3 w-px bg-brand-red/40" />
                 <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">

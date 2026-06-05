@@ -7,7 +7,7 @@ import LeadConnectorForm from "./LeadConnectorForm";
 
 const perks = [
   { icon: CheckCircle2, label: "Free, no-obligation estimate" },
-  { icon: ShieldCheck, label: "Licensed & insured masons" },
+  { icon: ShieldCheck, label: "MA HIC registered & insured masons" },
   { icon: Clock, label: "Reply within 1 business day" },
 ];
 
