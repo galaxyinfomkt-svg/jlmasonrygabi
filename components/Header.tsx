@@ -25,6 +25,7 @@ import { openQuoteModal } from "./QuoteModal";
 
 const nav = [
   { href: "/", label: "Home" },
+  { href: "/mockup", label: "AI Mockup" },
   { href: "/locations", label: "Locations" },
   { href: "/#gallery", label: "Gallery" },
   { href: "/#testimonials", label: "Reviews" },

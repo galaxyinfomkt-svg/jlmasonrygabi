@@ -100,7 +100,7 @@ export default function QuoteFormSection() {
                 <Star className="h-5 w-5 fill-brand-dark" />
               </div>
 
-              <div className="mb-5">
+              <div className="mb-5 pl-9">
                 <h3 className="font-display text-2xl lg:text-3xl text-brand-dark">
                   Request My Free Estimate
                 </h3>

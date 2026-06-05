@@ -113,7 +113,9 @@ export default function Hero() {
             </div>
 
             <div className="relative bg-brand-light rounded-sm border border-brand-red/30 shadow-2xl p-5 lg:p-6 backdrop-blur-md">
-              <div className="mb-4">
+              {/* pl-9 / pl-10 keeps the eyebrow and title clear of the decorative
+                  star badge that sits on the card's top-left corner. */}
+              <div className="mb-4 pl-9 lg:pl-10">
                 <div className="text-[0.65rem] uppercase tracking-[0.22em] text-brand-red-deep font-bold">
                   Free · No Obligation
                 </div>
