@@ -85,11 +85,11 @@ export default function About() {
               className="mt-7 space-y-5 text-brand-light/75 text-lg leading-relaxed text-pretty max-w-xl"
             >
               <p>
-                At JL Masonry &amp; Construction, we bring decades of hands-on
-                experience to every project. From custom stone patios and
-                retaining walls to chimney repairs and commercial hardscaping,
-                our team delivers durable, beautiful masonry work that stands
-                the test of time.
+                Locally trusted since 2010, JL Masonry &amp; Construction
+                brings 15+ years of hands-on experience to every project. From
+                custom stone patios and retaining walls to chimney repairs and
+                commercial hardscaping, our team delivers durable, beautiful
+                masonry work that stands the test of time.
               </p>
               <p>
                 Based in Woburn, MA and serving 109+ cities across Eastern
