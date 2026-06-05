@@ -49,6 +49,7 @@ export async function generateMetadata({
 
   const content = generateCityService(city, svc);
   const url = `${site.website}/${city.slug}/${svc.slug}`;
+  const ogImage = getServicePhotos(svc.slug).hero.src;
 
   return {
     title: content.metaTitle,
@@ -62,13 +63,13 @@ export async function generateMetadata({
       siteName: site.name,
       type: "website",
       locale: "en_US",
-      images: ["/assets/hero.jpg"],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: content.metaTitle,
       description: content.metaDescription,
-      images: ["/assets/hero.jpg"],
+      images: [ogImage],
     },
   };
 }

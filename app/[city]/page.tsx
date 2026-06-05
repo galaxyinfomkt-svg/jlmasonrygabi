@@ -6,7 +6,22 @@ import { ArrowRight, Award, BadgeCheck, MapPin, Phone, ShieldCheck, Star } from 
 import { cities, citiesBySlug } from "@/lib/cities";
 import { generateCityOverview } from "@/lib/content-generator";
 import { serviceMeta } from "@/lib/service-meta";
+import { getServicePhotos } from "@/lib/service-images";
 import { site } from "@/lib/site";
+
+// Deterministic per-city og:image. Hashes the city slug and rotates
+// through the available service hero photos so each of the 109 city
+// hubs gets its own social-share thumbnail instead of all sharing
+// /assets/hero.jpg. Same slug → same image on every build (crawler-stable).
+function ogImageForCity(citySlug: string): string {
+  let h = 0;
+  for (let i = 0; i < citySlug.length; i++) {
+    h = (h << 5) - h + citySlug.charCodeAt(i);
+    h |= 0;
+  }
+  const svc = serviceMeta[Math.abs(h) % serviceMeta.length];
+  return getServicePhotos(svc.slug).hero.src;
+}
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageBreadcrumb from "@/components/PageBreadcrumb";
@@ -29,6 +44,7 @@ export async function generateMetadata({
 
   const ctx = generateCityOverview(city);
   const url = `${site.website}/${city.slug}`;
+  const ogImage = ogImageForCity(city.slug);
 
   return {
     title: ctx.metaTitle,
@@ -42,13 +58,13 @@ export async function generateMetadata({
       siteName: site.name,
       type: "website",
       locale: "en_US",
-      images: ["/assets/hero.jpg"],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: ctx.metaTitle,
       description: ctx.metaDescription,
-      images: ["/assets/hero.jpg"],
+      images: [ogImage],
     },
   };
 }
