@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   keywords: [
     "masonry contractor Woburn MA",
     "patios stone walls Woburn Massachusetts",
+    "masonry contractor Eastern Massachusetts",
     "walkway construction Middlesex County",
     "chimney repair Woburn MA",
     "custom masonry near me",

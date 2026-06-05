@@ -40,8 +40,8 @@ export async function generateMetadata({
 
   const photos = getServicePhotos(svc.slug);
   const url = `${site.website}/services/${svc.slug}`;
-  const title = `${svc.longLabel} in Middlesex County, MA | JL Masonry`;
-  const description = `Expert ${svc.searchPhrase} serving Middlesex County, Massachusetts. ${svc.longLabel} built to last. Licensed & insured. Free estimates: ${site.phone}.`;
+  const title = `${svc.longLabel} in Eastern Massachusetts | JL Masonry`;
+  const description = `Expert ${svc.searchPhrase} serving 109+ cities across Eastern Massachusetts. ${svc.longLabel} built to last. Licensed & insured. Free estimates: ${site.phone}.`;
 
   return {
     title,
@@ -50,7 +50,7 @@ export async function generateMetadata({
       svc.searchPhrase,
       `${svc.searchPhrase} Massachusetts`,
       `${svc.shortLabel.toLowerCase()} contractor MA`,
-      `${svc.searchPhrasePlural} Middlesex County`,
+      `${svc.searchPhrasePlural} Eastern Massachusetts`,
       `${svc.shortLabel.toLowerCase()} installation MA`,
       `${svc.shortLabel.toLowerCase()} repair MA`,
     ],
@@ -96,11 +96,11 @@ export default async function ServicePage({
     "@type": "Service",
     serviceType: svc.longLabel,
     name: svc.longLabel,
-    description: `${svc.longLabel} for homeowners and businesses across Middlesex County, Massachusetts.`,
+    description: `${svc.longLabel} for homeowners and businesses across Eastern Massachusetts.`,
     provider: { "@id": `${site.website}#business` },
     areaServed: {
       "@type": "AdministrativeArea",
-      name: "Middlesex County, Massachusetts",
+      name: "Eastern Massachusetts",
     },
     image: photos.gallery.map((g) => `${site.website}${g.src}`),
     offers: {
@@ -163,7 +163,7 @@ export default async function ServicePage({
                 </span>
                 <span className="h-3 w-px bg-brand-red/40" />
                 <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">
-                  <MapPin className="h-3.5 w-3.5" /> Middlesex County
+                  <MapPin className="h-3.5 w-3.5" /> Eastern MA
                 </span>
               </div>
 

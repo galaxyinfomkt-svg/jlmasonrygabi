@@ -13,9 +13,10 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Masonry Services — Patios, Stone Walls, Chimneys & More | JL Masonry",
   description:
-    "Complete masonry services in Middlesex County, MA. Patios, stone walls, walkways, chimneys, retaining walls, sidewalks, residential & commercial. Free estimates: (617) 913-9845.",
+    "Complete masonry services across Eastern Massachusetts. Patios, stone walls, walkways, chimneys, retaining walls, sidewalks, residential & commercial. Free estimates: (617) 913-9845.",
   keywords: [
     "masonry services Massachusetts",
+    "masonry contractor Eastern Massachusetts",
     "masonry contractor Middlesex County",
     "patios stone walls walkways chimneys",
     "residential masonry MA",
@@ -42,7 +43,7 @@ export default function ServicesIndexPage() {
             className="mt-5 font-display text-brand-light tracking-tight text-balance"
             style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", lineHeight: 1.04 }}
           >
-            Every masonry service we offer — <span className="italic text-brand-gold">across Middlesex County</span>
+            Every masonry service we offer — <span className="italic text-brand-gold">across Eastern Massachusetts</span>
           </h1>
           <p className="mt-5 text-brand-light/70 text-lg leading-relaxed text-pretty">
             From hand-laid stone walls to full property hardscape, every service

@@ -92,11 +92,12 @@ export default function About() {
                 the test of time.
               </p>
               <p>
-                Serving Woburn, MA and all of Middlesex County, we combine
-                old-world craftsmanship with modern techniques — treating every
-                property like our own. Whether it's a backyard transformation or
-                a full commercial project, we show up on time, communicate
-                clearly, and deliver results that exceed expectations.
+                Based in Woburn, MA and serving 109+ cities across Eastern
+                Massachusetts, we combine old-world craftsmanship with modern
+                techniques — treating every property like our own. Whether it's
+                a backyard transformation or a full commercial project, we show
+                up on time, communicate clearly, and deliver results that
+                exceed expectations.
               </p>
             </motion.div>
 

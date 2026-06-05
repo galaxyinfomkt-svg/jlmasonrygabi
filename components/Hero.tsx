@@ -68,8 +68,8 @@ export default function Hero() {
 
             <p className="mt-6 text-base lg:text-lg text-brand-light/85 leading-relaxed text-pretty max-w-xl">
               Expert patios, stone walls, walkways, and chimneys built to last.
-              Serving Woburn and all of Middlesex County with craftsmanship that
-              holds up to every New England winter.
+              Serving 109+ cities across Eastern Massachusetts with
+              craftsmanship that holds up to every New England winter.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">

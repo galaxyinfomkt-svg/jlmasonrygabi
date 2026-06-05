@@ -24,7 +24,7 @@ export const site = {
     region: "MA",
     regionLong: "Massachusetts",
     country: "US",
-    serviceArea: "Middlesex County, Massachusetts",
+    serviceArea: "Eastern Massachusetts",
     street: "Woburn, MA 01801",
   },
   hours: "Mon–Sat: 7:00 AM – 5:00 PM | Sun: Closed",
@@ -313,7 +313,7 @@ export const testimonials = [
 export const faqs = [
   {
     q: "What areas do you serve?",
-    a: "Woburn, Burlington, Winchester, Lexington, Stoneham, and all of Middlesex County, MA.",
+    a: "Based in Woburn, we serve 109+ cities across Eastern Massachusetts — Greater Boston, MetroWest, the North Shore, the South Suburban area, and parts of Central MA (Middlesex, Worcester, Norfolk, Essex and surrounding counties).",
   },
   {
     q: "Do you offer free estimates?",
