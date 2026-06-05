@@ -44,13 +44,11 @@ export default function CityServiceSchema({ city, service, url }: Props) {
       },
     },
     sameAs: [site.social.facebook, site.social.instagram],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: site.rating.value,
-      reviewCount: site.rating.count.toString(),
-      bestRating: "5",
-      worstRating: "1",
-    },
+    // aggregateRating intentionally omitted on city/city×service pages —
+    // injecting it here would replicate the same 5.0/47 review count on
+    // ~1,200 programmatic pages, which is exactly the spammy structured-
+    // markup pattern Google penalizes. AggregateRating lives only on the
+    // canonical LocalBusiness node in components/JsonLd.tsx (home).
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
