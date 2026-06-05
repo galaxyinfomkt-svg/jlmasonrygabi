@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { services } from "@/lib/site";
@@ -67,8 +68,8 @@ export default function Services() {
                   },
                 }}
               >
-                <a
-                  href="#contact"
+                <Link
+                  href={`/services/${svc.slug}`}
                   className="group relative block bg-brand-stone border border-white/8 hover:border-brand-gold rounded-sm overflow-hidden h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-warm"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden">
@@ -109,7 +110,7 @@ export default function Services() {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </motion.li>
             );
           })}
