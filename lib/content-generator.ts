@@ -91,14 +91,39 @@ export function generateCityService(
     return p;
   });
 
-  // Process — generic but presented with local framing
-  const process = [
-    `Free on-site estimate at your ${city.name} property — we walk the site, listen, and ask the right questions.`,
-    `Written quote within 48 hours with materials, scope, schedule, and price — itemized, in plain English.`,
-    `Permits and town coordination handled by us (${city.county} County conservation, historic, and wetlands overlays where applicable).`,
-    `Hand-built by our crew — daily site cleanup, daily progress photos, foreman on-site every working day.`,
-    `Final walk-through with you, punch list addressed, and written workmanship warranty in your hands before we leave.`,
+  // Process — three structurally different narratives so the ~1,090
+  // programmatic city × service pages don't all share the same 5 steps
+  // verbatim. The pick() seed (city + service) keeps the same combo
+  // deterministic across builds.
+  const processVariants: string[][] = [
+    // Variant 1 — "Estimate → Quote → Permits → Build → Walk-through"
+    // (original 5-step narrative, kept as the baseline for ~1/3 of pages)
+    [
+      `Free on-site estimate at your ${city.name} property — we walk the site, listen, and ask the right questions.`,
+      `Written quote within 48 hours with materials, scope, schedule, and price — itemized, in plain English.`,
+      `Permits and town coordination handled by us (${city.county} County conservation, historic, and wetlands overlays where applicable).`,
+      `Hand-built by our crew — daily site cleanup, daily progress photos, foreman on-site every working day.`,
+      `Final walk-through with you, punch list addressed, and written workmanship warranty in your hands before we leave.`,
+    ],
+    // Variant 2 — "Discovery → Design → Schedule → Install → Warranty"
+    // (re-frames the same workflow with a design-led narrative)
+    [
+      `Discovery visit in ${city.name} — we measure, photograph, and listen to what you want this ${svc.shortLabel.toLowerCase()} to do for the property.`,
+      `Design and material selection — samples brought to your home so the colors and textures match the ${city.architectureStyle.split(",")[0].toLowerCase()} character of your block.`,
+      `Schedule locked in writing — a real start date, a real end date, and the same crew on-site every day.`,
+      `Install by our own masons — no day-laborers, no subs we just met. Daily photos sent to you so you always know where the job stands.`,
+      `Written workmanship warranty handed over before we pull off the property — and we answer the phone after the job is done.`,
+    ],
+    // Variant 3 — "Site visit → Plan → Build → Backed by" (4 steps, faster
+    // cadence — useful where homeowners just want a quick mental model)
+    [
+      `Site visit at your ${city.name} home — typically within 48 hours of your call.`,
+      `Plan and price in writing — materials, scope, schedule, and a firm number you can budget against.`,
+      `Hand-laid build — same crew from estimate to final clean-up, never sub-contracted out.`,
+      `Backed by a written warranty plus the local reputation of a Woburn-based shop that's been around since 2010.`,
+    ],
   ];
+  const process = pick(processVariants, seed, "p");
 
   // Closing pitch
   const closingVariants = [
