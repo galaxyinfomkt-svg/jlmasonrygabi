@@ -266,6 +266,12 @@ export const galleryCategories: GalleryCategory[] = [
   "Projects",
 ];
 
+// TODO(Luiz): these 5 entries are PLACEHOLDERS used only by the visual
+// <Testimonials /> component. They are NOT real GBP reviews and MUST NOT
+// be wired into structured data (see lib/reviews.ts for the verified
+// source). Replace with real, dated GBP reviews once Jonildo's GBP is
+// restored; until then they remain as social-proof copy but are kept out
+// of the schema.org Review markup.
 export const testimonials = [
   {
     quote:
