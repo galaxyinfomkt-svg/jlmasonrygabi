@@ -17,8 +17,8 @@ export const site = {
   tagline: "Built to Last. Crafted with Pride.",
   phone: "(617) 913-9845",
   phoneHref: "tel:+16179139845",
-  email: "info@jlmasonryma.com",
-  emailHref: "mailto:info@jlmasonryma.com",
+  email: "contact@jlmasonryma.com",
+  emailHref: "mailto:contact@jlmasonryma.com",
   address: {
     city: "Woburn",
     region: "MA",
