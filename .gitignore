@@ -6,3 +6,6 @@ out/
 .env*.local
 
 .vercel
+
+# TypeScript incremental build cache
+*.tsbuildinfo

@@ -6,6 +6,8 @@ import { site } from "@/lib/site";
 
 type Props = {
   height?: number | string;
+  /** Altura no celular. O form do GHL fica bem mais alto em tela estreita. */
+  mobileHeight?: number | string;
   className?: string;
   title?: string;
 };
@@ -13,30 +15,40 @@ type Props = {
 const FORM_ID = "Xsr3o2zQhIeWZNqQqd66";
 
 /**
- * Defer the LeadConnector iframe (~2 MB including reCAPTCHA + libphonenumber)
- * until after the first paint so it doesn't drag LCP / TBT down.
+ * Carrega o iframe do LeadConnector (~2 MB com reCAPTCHA + libphonenumber)
+ * só depois da primeira pintura, para não derrubar LCP / TBT.
  *
- * Robustness notes:
- *   - The outer wrapper holds an explicit min-height. Even if LeadConnector's
- *     `form_embed.js` script collapses the iframe to 0 px (which has happened
- *     on some networks where the iframe's reCAPTCHA handshake fails), the
- *     surrounding layout stays intact.
- *   - A fallback panel ("Trouble loading? Call us") sits behind the iframe
- *     and becomes visible if the iframe is missing or transparent.
- *   - We intentionally drop the `data-*` attributes that `form_embed.js`
- *     uses to find and resize the iframe, so the script can no longer
- *     shrink it. The iframe keeps its declared height.
+ * Notas de robustez:
+ *   - Não usamos os `data-*` do `form_embed.js`. Sem eles o script não acha
+ *     o iframe e não consegue encolher para 0 px, que era o bug antigo.
+ *     Em troca, o iframe não se redimensiona sozinho: por isso a altura no
+ *     celular é maior, senão o form corta.
+ *   - O painel de contato só aparece enquanto o iframe não carregou, ou se
+ *     ele falhar de vez. Antes ele ficava pintado atrás para sempre, então
+ *     qualquer falha virava uma caixa cinza com "Form taking a while?".
+ *   - `isolation: isolate` + `translateZ(0)` no iframe evitam o iframe branco
+ *     do Safari do iOS quando existe filtro/transform em algum ancestral.
+ *   - NÃO envolva este componente em um elemento com `backdrop-filter`
+ *     (`backdrop-blur-*` do Tailwind). No iOS isso faz o iframe não pintar.
  */
 export default function LeadConnectorForm({
   height = 600,
+  mobileHeight,
   className = "",
   title = "Request a Free Masonry Estimate",
 }: Props) {
   const [mount, setMount] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [narrow, setNarrow] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (mount) return;
+
+    if (typeof window.matchMedia === "function") {
+      setNarrow(window.matchMedia("(max-width: 640px)").matches);
+    }
 
     const trigger = () => setMount(true);
 
@@ -70,55 +82,77 @@ export default function LeadConnectorForm({
     };
   }, [mount]);
 
-  const heightCss = typeof height === "number" ? `${height}px` : height;
+  // Se o iframe não avisar que carregou em 12s, assume falha e mostra o contato.
+  useEffect(() => {
+    if (!mount || loaded) return;
+    const t = window.setTimeout(() => setFailed(true), 12000);
+    return () => window.clearTimeout(t);
+  }, [mount, loaded]);
+
+  const base = typeof height === "number" ? `${height}px` : height;
+  const mob = mobileHeight
+    ? typeof mobileHeight === "number"
+      ? `${mobileHeight}px`
+      : mobileHeight
+    : typeof height === "number"
+      ? `${height + 200}px`
+      : height;
+  const heightCss = narrow ? mob : base;
+
+  const mostrarPainel = !loaded || failed;
 
   return (
     <div
       ref={wrapperRef}
       className={`relative ${className}`}
-      style={{ minHeight: heightCss }}
+      style={{ minHeight: heightCss, isolation: "isolate" }}
     >
-      {/* Fallback panel — sits behind the iframe. Visible whenever the
-          iframe is missing, blocked, or collapsed by form_embed.js. */}
-      <div
-        className="absolute inset-0 grid place-items-center p-6 text-center bg-gradient-to-br from-brand-stone/10 to-transparent border border-brand-dark/5 rounded-sm"
-        style={{ zIndex: 0 }}
-        aria-hidden={mount ? "true" : "false"}
-      >
-        <div className="flex flex-col items-center gap-3 text-brand-gray">
-          {!mount && (
-            <div className="h-8 w-8 rounded-full border-2 border-brand-red/30 border-t-brand-red animate-spin" />
-          )}
-          <span className="text-xs uppercase tracking-[0.18em] font-semibold">
-            {mount ? "Form taking a while?" : "Loading form…"}
-          </span>
-          <div className="text-xs text-brand-gray/85 leading-relaxed max-w-xs">
-            <p>You can also reach us directly:</p>
-            <p className="mt-2">
-              <a
-                href={site.phoneHref}
-                className="inline-flex items-center gap-1.5 text-brand-red font-bold hover:text-brand-red-deep transition"
-              >
-                <Phone className="h-3.5 w-3.5" />
-                {site.phone}
-              </a>
-            </p>
-            <p className="mt-1">
-              <a
-                href={site.emailHref}
-                className="text-brand-red font-bold hover:text-brand-red-deep transition break-all"
-              >
-                {site.email}
-              </a>
-            </p>
+      {/* Contato direto. Fica visível enquanto o form não carrega e, se ele
+          falhar de vez, continua no lugar como saída para o visitante. */}
+      {mostrarPainel && (
+        <div
+          className="absolute inset-0 grid place-items-center p-6 text-center bg-brand-stone/5 border border-brand-dark/5 rounded-sm"
+          style={{ zIndex: 0 }}
+        >
+          <div className="flex flex-col items-center gap-3 text-brand-gray">
+            {!failed && (
+              <div className="h-8 w-8 rounded-full border-2 border-brand-red/30 border-t-brand-red animate-spin" />
+            )}
+            <span className="text-xs uppercase tracking-[0.18em] font-semibold">
+              {failed ? "Form not loading?" : "Loading form…"}
+            </span>
+            <div className="text-xs text-brand-gray/85 leading-relaxed max-w-xs">
+              <p>You can also reach us directly:</p>
+              <p className="mt-2">
+                <a
+                  href={site.phoneHref}
+                  className="inline-flex items-center gap-1.5 text-brand-red font-bold hover:text-brand-red-deep transition"
+                >
+                  <Phone className="h-3.5 w-3.5" />
+                  {site.phone}
+                </a>
+              </p>
+              <p className="mt-1">
+                <a
+                  href={site.emailHref}
+                  className="text-brand-red font-bold hover:text-brand-red-deep transition break-all"
+                >
+                  {site.email}
+                </a>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {mount && (
         <iframe
           src={`https://api.leadconnectorhq.com/widget/form/${FORM_ID}`}
-          loading="lazy"
+          onLoad={() => {
+            setLoaded(true);
+            setFailed(false);
+          }}
+          onError={() => setFailed(true)}
           style={{
             position: "relative",
             zIndex: 1,
@@ -129,6 +163,8 @@ export default function LeadConnectorForm({
             borderRadius: "3px",
             display: "block",
             background: "white",
+            // Força camada própria: contorna o iframe em branco do iOS Safari.
+            transform: "translateZ(0)",
           }}
           title={title}
         />

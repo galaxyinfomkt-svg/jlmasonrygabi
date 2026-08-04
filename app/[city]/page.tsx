@@ -184,7 +184,7 @@ export default async function CityPage({
               <div className="absolute -top-3 -left-3 lg:-top-4 lg:-left-4 h-12 w-12 lg:h-14 lg:w-14 bg-brand-red rounded-sm grid place-items-center text-white shadow-red z-10">
                 <Star className="h-5 w-5 lg:h-6 lg:w-6 fill-white" />
               </div>
-              <div className="relative bg-brand-light rounded-sm border border-brand-red/30 shadow-2xl p-5 lg:p-6 backdrop-blur-md">
+              <div className="relative bg-brand-light rounded-sm border border-brand-red/30 shadow-2xl p-5 lg:p-6">
                 <div className="mb-4">
                   <div className="text-[0.65rem] uppercase tracking-[0.22em] text-brand-red-deep font-bold">
                     Free · No Obligation
