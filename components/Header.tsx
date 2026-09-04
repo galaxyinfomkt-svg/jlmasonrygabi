@@ -12,6 +12,7 @@ import {
   Home,
   Layers,
   Menu,
+  Mail,
   Mountain,
   Phone,
   Route,
@@ -80,6 +81,28 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
+      {/* Utility bar — the email had no home on this site at all, neither in
+          the header nor the footer. It belongs above the fold next to the
+          phone, which is where a visitor looks for it. */}
+      <div className="border-b border-white/10 bg-brand-dark">
+        <div className="container-edge flex h-9 items-center justify-between gap-3 text-[11px] sm:text-xs">
+          <a
+            href={site.emailHref}
+            className="flex items-center gap-1.5 whitespace-nowrap text-white/80 transition-colors hover:text-white"
+          >
+            <Mail className="h-3.5 w-3.5 shrink-0" />
+            {site.email}
+          </a>
+          <a
+            href={site.phoneHref}
+            className="flex items-center gap-1.5 whitespace-nowrap font-semibold text-white transition-colors hover:text-white/80"
+          >
+            <Phone className="h-3.5 w-3.5 shrink-0" />
+            {site.phone}
+          </a>
+        </div>
+      </div>
+
       <div className="container-edge flex items-center justify-between gap-4 py-3 lg:py-4">
         <Link
           href="/"

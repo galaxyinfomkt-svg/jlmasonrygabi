@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUp, Facebook, Instagram, Phone, Star } from "lucide-react";
+import { ArrowUp, Facebook, Instagram, Mail, Phone, Star } from "lucide-react";
 import { citiesByRegion, type CityRegion } from "@/lib/cities";
 import { serviceMeta } from "@/lib/service-meta";
 import { site } from "@/lib/site";
@@ -119,6 +119,14 @@ export default function Footer() {
                   className="inline-flex items-center gap-2 text-brand-light hover:text-brand-gold transition font-semibold"
                 >
                   <Phone className="h-4 w-4 text-brand-gold" /> {site.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.emailHref}
+                  className="inline-flex items-center gap-2 text-brand-light hover:text-brand-gold transition break-all"
+                >
+                  <Mail className="h-4 w-4 shrink-0 text-brand-gold" /> {site.email}
                 </a>
               </li>
               <li className="text-brand-light/65">
