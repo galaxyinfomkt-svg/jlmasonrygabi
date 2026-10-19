@@ -111,7 +111,7 @@ export default function LeadConnectorForm({
           falhar de vez, continua no lugar como saída para o visitante. */}
       {mostrarPainel && (
         <div
-          className="absolute inset-0 grid place-items-center p-6 text-center bg-brand-stone/5 border border-brand-dark/5 rounded-sm"
+          className="absolute inset-0 grid place-items-center p-6 text-center"
           style={{ zIndex: 0 }}
         >
           <div className="flex flex-col items-center gap-3 text-brand-gray">

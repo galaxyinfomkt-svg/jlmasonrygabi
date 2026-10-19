@@ -129,6 +129,7 @@ export default function Hero() {
 
               <LeadConnectorForm
                 height={500}
+                mobileHeight={560}
                 title="JL Masonry — Hero Quote Form"
               />
 
