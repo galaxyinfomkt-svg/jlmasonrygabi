@@ -102,48 +102,14 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT: Form card with a fixed min-height so the deferred iframe
-              doesn't trigger CLS when it finally mounts */}
-          <div
-            className="relative w-full max-w-md lg:max-w-none mx-auto"
-            style={{ minHeight: "640px" }}
-          >
-            <div className="absolute -top-3 -left-3 lg:-top-4 lg:-left-4 h-12 w-12 lg:h-14 lg:w-14 bg-brand-red rounded-sm grid place-items-center text-white shadow-red z-10">
-              <Star className="h-5 w-5 lg:h-6 lg:w-6 fill-white" />
-            </div>
-
-            <div className="relative bg-brand-light rounded-sm border border-brand-red/30 shadow-2xl p-5 lg:p-6">
-              {/* pl-9 / pl-10 keeps the eyebrow and title clear of the decorative
-                  star badge that sits on the card's top-left corner. */}
-              <div className="mb-4 pl-9 lg:pl-10">
-                <div className="text-[0.65rem] uppercase tracking-[0.22em] text-brand-red-deep font-bold">
-                  Free · No Obligation
-                </div>
-                <h2 className="mt-1 font-display text-2xl lg:text-[1.75rem] text-brand-dark leading-tight">
-                  Request a Free Estimate
-                </h2>
-                <p className="mt-1.5 text-xs lg:text-sm text-brand-gray">
-                  Takes 60 seconds. We reply within one business day.
-                </p>
-              </div>
-
-              <LeadConnectorForm
-                height={500}
-                mobileHeight={560}
-                title="JL Masonry — Hero Quote Form"
-              />
-
-              <div className="mt-4 pt-4 border-t border-brand-dark/10 flex items-center justify-between gap-3 text-xs min-h-[2.25rem]">
-                <span className="text-brand-gray">Prefer to call?</span>
-                <a
-                  href={site.phoneHref}
-                  className="inline-flex items-center gap-1.5 text-brand-dark hover:text-brand-red-deep font-bold transition"
-                >
-                  <Phone className="h-3.5 w-3.5 text-brand-red-deep" />
-                  {site.phone}
-                </a>
-              </div>
-            </div>
+          {/* RIGHT: only the quote form — no card, badge or title around it.
+              LeadConnectorForm reserves its own height, so no CLS on mount. */}
+          <div className="relative w-full max-w-md lg:max-w-none mx-auto">
+            <LeadConnectorForm
+              height={500}
+              mobileHeight={560}
+              title="JL Masonry — Hero Quote Form"
+            />
           </div>
         </div>
       </div>

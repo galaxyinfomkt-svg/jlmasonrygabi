@@ -162,7 +162,10 @@ export default function LeadConnectorForm({
             border: "none",
             borderRadius: "3px",
             display: "block",
-            background: "white",
+            // Transparente: sem faixa branca abaixo do form quando o iframe
+            // reserva mais altura do que o form ocupa.
+            background: "transparent",
+            colorScheme: "normal",
             // Força camada própria: contorna o iframe em branco do iOS Safari.
             transform: "translateZ(0)",
           }}
