@@ -14,6 +14,11 @@ type Props = {
 
 const FORM_ID = "Xsr3o2zQhIeWZNqQqd66";
 
+// Folga para o campo "Preferred Timeline" (quando o cliente quer o projeto),
+// adicionado ao form no GHL em nov/2026. O iframe não se redimensiona sozinho,
+// então sem isso o botão Submit é cortado em todas as páginas.
+const EXTRA = 100;
+
 /**
  * Carrega o iframe do LeadConnector (~2 MB com reCAPTCHA + libphonenumber)
  * só depois da primeira pintura, para não derrubar LCP / TBT.
@@ -89,13 +94,13 @@ export default function LeadConnectorForm({
     return () => window.clearTimeout(t);
   }, [mount, loaded]);
 
-  const base = typeof height === "number" ? `${height}px` : height;
+  const base = typeof height === "number" ? `${height + EXTRA}px` : height;
   const mob = mobileHeight
     ? typeof mobileHeight === "number"
-      ? `${mobileHeight}px`
+      ? `${mobileHeight + EXTRA}px`
       : mobileHeight
     : typeof height === "number"
-      ? `${height + 200}px`
+      ? `${height + 200 + EXTRA}px`
       : height;
   const heightCss = narrow ? mob : base;
 
