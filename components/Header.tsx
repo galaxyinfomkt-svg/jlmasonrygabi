@@ -29,7 +29,6 @@ const nav = [
   { href: "/mockup", label: "AI Mockup" },
   { href: "/locations", label: "Locations" },
   { href: "/#gallery", label: "Gallery" },
-  { href: "/#testimonials", label: "Reviews" },
   { href: "/#contact", label: "Contact" },
 ];
 

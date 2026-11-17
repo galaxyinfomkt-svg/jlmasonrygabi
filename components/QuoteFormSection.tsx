@@ -7,7 +7,7 @@ import LeadConnectorForm from "./LeadConnectorForm";
 
 const perks = [
   { icon: CheckCircle2, label: "Free, no-obligation estimate" },
-  { icon: ShieldCheck, label: "MA HIC registered & insured masons" },
+  { icon: ShieldCheck, label: "Locally owned, based in Woburn" },
   { icon: Clock, label: "Reply within 1 business day" },
 ];
 
@@ -61,17 +61,7 @@ export default function QuoteFormSection() {
             </ul>
 
             <div className="mt-8 p-5 bg-brand-dark text-brand-light rounded-sm flex items-center justify-between gap-4 flex-wrap">
-              <div className="flex items-center gap-3">
-                <div className="flex">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <Star key={i} className="h-4 w-4 fill-brand-gold text-brand-gold" />
-                  ))}
-                </div>
-                <span className="text-sm">
-                  <span className="font-bold">{site.rating.value}</span> ·{" "}
-                  {site.rating.count}+ Google reviews
-                </span>
-              </div>
+              <span className="text-sm">Prefer to talk? Call us directly.</span>
               <a
                 href={site.phoneHref}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-brand-gold hover:text-[#DC4640] transition"

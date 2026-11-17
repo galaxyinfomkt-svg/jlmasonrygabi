@@ -326,7 +326,6 @@ export const serviceMeta: ServiceMeta[] = [
     ],
     whyNow: "Commercial property condition directly impacts tenant retention and customer perception. Address masonry issues before they become signage problems.",
     faqs: [
-      { q: "Are you insured for commercial work?", a: "Yes — fully. Commercial general liability and workers' comp on every employee. Certificates available to property managers and GCs before we set foot on site." },
       { q: "Do you coordinate with general contractors?", a: "Yes. We work as a sub for GCs regularly, coordinate with architects and engineers, and meet town and inspector requirements." },
       { q: "What types of commercial work do you do?", a: "Storefronts, restaurants, multi-family, property management work, retail, light industrial. We pass on highly specialized work (e.g., institutional restoration) when it's not our specialty." },
     ],

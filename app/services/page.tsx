@@ -11,9 +11,9 @@ import { services as servicesData } from "@/lib/site";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Masonry Services — Patios, Stone Walls, Chimneys & More | JL Masonry",
+  title: "Masonry & Hardscape Services | JL Masonry, Woburn MA",
   description:
-    "Complete masonry services across Eastern Massachusetts. Patios, stone walls, walkways, chimneys, retaining walls, sidewalks, residential & commercial. Free estimates: (617) 913-9845.",
+    "Patios, stone walls, walkways, steps, retaining walls and chimney repair across the Woburn area. Free estimates: (617) 913-9845.",
   keywords: [
     "masonry services Massachusetts",
     "masonry contractor Eastern Massachusetts",

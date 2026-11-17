@@ -20,7 +20,12 @@ export default function QuoteModal() {
   useEffect(() => {
     const onOpen = () => setOpen(true);
     window.addEventListener(QUOTE_MODAL_OPEN_EVENT, onOpen);
-    return () => window.removeEventListener(QUOTE_MODAL_OPEN_EVENT, onOpen);
+    // Lets StickyCallBar know this page can open the modal.
+    document.documentElement.dataset.quoteModal = "1";
+    return () => {
+      window.removeEventListener(QUOTE_MODAL_OPEN_EVENT, onOpen);
+      delete document.documentElement.dataset.quoteModal;
+    };
   }, []);
 
   useEffect(() => {

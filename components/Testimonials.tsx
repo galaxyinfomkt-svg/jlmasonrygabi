@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { site, testimonials } from "@/lib/site";
+import { realReviews } from "@/lib/reviews";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -33,7 +33,17 @@ function initials(name: string) {
     .toUpperCase();
 }
 
+/**
+ * Shows ONLY real, dated reviews from lib/reviews.ts. With none on file the
+ * section (and its nav links) disappears — no placeholder quotes, no star
+ * count we can't back up, no third-party widget showing "0 reviews".
+ */
 export default function Testimonials() {
+  if (realReviews.length === 0) return null;
+  const avg = (
+    realReviews.reduce((sum, r) => sum + r.rating, 0) / realReviews.length
+  ).toFixed(1);
+
   return (
     <section
       id="testimonials"
@@ -64,14 +74,11 @@ export default function Testimonials() {
           </h2>
           <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 bg-brand-stone border border-brand-gold/40 rounded-sm">
             <GoogleG className="h-5 w-5" />
-            <div className="flex">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <Star key={i} className="h-4 w-4 fill-brand-gold text-brand-gold" />
-              ))}
-            </div>
             <span className="text-sm text-brand-light">
-              <span className="font-bold">{site.rating.value}</span> ·{" "}
-              <span className="text-brand-light/65">{site.rating.count}+ verified Google reviews</span>
+              <span className="font-bold">{avg}</span> ·{" "}
+              <span className="text-brand-light/65">
+                {realReviews.length} Google {realReviews.length === 1 ? "review" : "reviews"}
+              </span>
             </span>
           </div>
         </motion.div>
@@ -94,7 +101,7 @@ export default function Testimonials() {
             }}
             className="!pb-14"
           >
-            {testimonials.map((t, i) => (
+            {realReviews.map((t, i) => (
               <SwiperSlide key={i}>
                 <figure className="group relative h-full p-7 lg:p-9 bg-brand-stone border border-white/10 hover:border-brand-gold/60 rounded-sm transition-all duration-500 hover:shadow-warm">
                   <Quote className="absolute top-6 right-6 h-12 w-12 text-brand-gold/12 group-hover:text-brand-gold/25 transition" />
@@ -105,16 +112,19 @@ export default function Testimonials() {
                         <Star key={s} className="h-4 w-4 fill-brand-gold text-brand-gold" />
                       ))}
                     </div>
-                    <span className="text-[0.65rem] uppercase tracking-[0.18em] text-brand-light/45 font-bold pl-2">
-                      Verified · Google
-                    </span>
+                    <time
+                      dateTime={t.datePublished}
+                      className="text-[0.65rem] uppercase tracking-[0.18em] text-brand-light/45 font-bold pl-2"
+                    >
+                      Google · {t.datePublished.slice(0, 7)}
+                    </time>
                   </div>
 
                   <blockquote
                     className="font-display text-brand-light tracking-tight leading-[1.45] min-h-[140px]"
                     style={{ fontSize: "clamp(1.1rem, 1.4vw, 1.4rem)" }}
                   >
-                    &ldquo;{t.quote}&rdquo;
+                    &ldquo;{t.text}&rdquo;
                   </blockquote>
 
                   <figcaption className="mt-7 pt-5 border-t border-white/8 flex items-center justify-between gap-4">
@@ -124,7 +134,9 @@ export default function Testimonials() {
                       </div>
                       <div>
                         <div className="font-semibold text-brand-light">{t.author}</div>
-                        <div className="text-xs text-brand-light/55">{t.location}</div>
+                        {t.location && (
+                          <div className="text-xs text-brand-light/55">{t.location}</div>
+                        )}
                       </div>
                     </div>
                     <GoogleG className="h-6 w-6 opacity-70 group-hover:opacity-100 transition" />
@@ -135,50 +147,6 @@ export default function Testimonials() {
           </Swiper>
         </motion.div>
 
-        {/* Google Reviews widget */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 max-w-5xl mx-auto"
-        >
-          <div className="rounded-sm overflow-hidden border border-white/10 bg-brand-stone">
-            <iframe
-              src={site.reviewsWidget}
-              loading="lazy"
-              title="Google Reviews — JL Masonry"
-              className="w-full"
-              style={{ minHeight: 420, border: "none" }}
-            />
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-4"
-        >
-          <a
-            href={site.social.review}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            <GoogleG className="h-4 w-4" />
-            Read All Reviews on Google
-          </a>
-          <a
-            href={site.social.review}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-light/70 hover:text-brand-gold text-sm underline-offset-4 hover:underline transition"
-          >
-            Or leave one yourself
-          </a>
-        </motion.div>
       </div>
     </section>
   );

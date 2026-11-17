@@ -25,7 +25,7 @@ export const site = {
     regionLong: "Massachusetts",
     country: "US",
     serviceArea: "Eastern Massachusetts",
-    street: "Woburn, MA 01801",
+    postalCode: "01801",
   },
   hours: "Mon–Sat: 7:00 AM – 5:00 PM | Sun: Closed",
   hoursStructured: [
@@ -37,12 +37,24 @@ export const site = {
   social: {
     facebook: "https://www.facebook.com/jl.masonry.construction",
     instagram: "https://www.instagram.com/jlmasonry_/",
-    review: "https://g.page/r/CYrB7gKa9WaQEBM/review",
+    bbb: "https://www.bbb.org/us/ma/woburn/profile/mason-contractors/jl-masonry-construction-0021-551074",
   },
-  rating: { value: "5.0", count: 47 },
-  reviewsWidget:
-    "https://backend.leadconnectorhq.com/appengine/reviews/get_widget/QDJQl1odcMmCwTMFVIKK",
+  /**
+   * MA HIC registration number. Leave null until it is confirmed ACTIVE on
+   * contractorhub.mass.gov — MA law requires the number on any advertising
+   * that mentions it. When set, "MA HIC Reg. #…" shows in the hero badges,
+   * the footer, the FAQ and the schema (hasCredential).
+   *
+   * Removed in Nov/2026 along with the "47+ Google reviews" rating, the GHL
+   * reviews widget (it showed "0.00 · 0 reviews") and the placeholder
+   * testimonials: the site must only show claims we can prove. Add real,
+   * dated reviews to lib/reviews.ts once the Google profile is back.
+   */
+  hic: null as string | null,
 } as const;
+
+/** Hero/footer label for the HIC registration, or null while unconfirmed. */
+export const hicLabel = site.hic ? `MA HIC Reg. #${site.hic}` : null;
 
 export type ServiceItem = {
   slug: string;
@@ -266,50 +278,6 @@ export const galleryCategories: GalleryCategory[] = [
   "Projects",
 ];
 
-// TODO(Luiz): these 5 entries are PLACEHOLDERS used only by the visual
-// <Testimonials /> component. They are NOT real GBP reviews and MUST NOT
-// be wired into structured data (see lib/reviews.ts for the verified
-// source). Replace with real, dated GBP reviews once Jonildo's GBP is
-// restored; until then they remain as social-proof copy but are kept out
-// of the schema.org Review markup.
-export const testimonials = [
-  {
-    quote:
-      "JL Masonry transformed our backyard completely. The stone patio they built is absolutely stunning — professional crew, on time, and exceptional quality.",
-    author: "Maria S.",
-    location: "Woburn, MA",
-    rating: 5,
-  },
-  {
-    quote:
-      "Hired them to repair our chimney and build a retaining wall. Excellent work, fair pricing, and great communication throughout.",
-    author: "David R.",
-    location: "Burlington, MA",
-    rating: 5,
-  },
-  {
-    quote:
-      "Best masonry contractor in Middlesex County. Our walkway looks incredible. Highly recommend!",
-    author: "Karen T.",
-    location: "Winchester, MA",
-    rating: 5,
-  },
-  {
-    quote:
-      "Their team rebuilt our front steps and stone wall. Quality of the masonry is honestly better than the original house. Crew showed up every day on time.",
-    author: "Priya & Anand S.",
-    location: "Arlington, MA",
-    rating: 5,
-  },
-  {
-    quote:
-      "We hired JL for a commercial walkway repour. They treated it like their own storefront — on time, on budget, no callbacks needed.",
-    author: "Tom B.",
-    location: "Lexington, MA",
-    rating: 5,
-  },
-];
-
 export const faqs = [
   {
     q: "What areas do you serve?",
@@ -319,10 +287,14 @@ export const faqs = [
     q: "Do you offer free estimates?",
     a: "Yes! Free, no-obligation estimates for all masonry projects.",
   },
-  {
-    q: "Are you licensed and insured?",
-    a: "Yes — MA HIC registered (Home Improvement Contractor) and fully insured for your peace of mind.",
-  },
+  ...(site.hic
+    ? [
+        {
+          q: "Are you registered with the state?",
+          a: `Yes — we're registered with the Massachusetts Home Improvement Contractor program, HIC #${site.hic}.`,
+        },
+      ]
+    : []),
   {
     q: "How long does a typical project take?",
     a: "Standard patio: 3–5 days. Larger projects: 1–2 weeks. We provide a clear timeline upfront before we ever start work.",
@@ -335,7 +307,7 @@ export const faqs = [
 
 export const aboutHighlights = [
   "Free, No-Obligation Estimates",
-  "MA HIC Registered & Insured",
+  "Itemized Written Quotes",
   "Trusted Local Experts in Woburn, MA",
   "Residential & Commercial Projects",
   "Quick & Easy Scheduling",

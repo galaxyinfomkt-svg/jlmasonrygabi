@@ -8,7 +8,10 @@ export const metadata: Metadata = {
   title: "Visualize Stone on Your Home — AI Mockup | JL Masonry",
   description:
     "Upload a photo of your home, point to where you want stone, and see an instant AI mockup. Free preview before you book a free estimate.",
-  robots: { index: true, follow: true },
+  // Interactive tool, not a landing page: keep it out of the index and stop
+  // it inheriting the home canonical from the root layout.
+  alternates: { canonical: "/mockup" },
+  robots: { index: false, follow: true },
 };
 
 export default function MockupPage() {

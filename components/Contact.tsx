@@ -136,23 +136,6 @@ export default function Contact() {
                 >
                   <Instagram className="h-4 w-4" />
                 </a>
-                <a
-                  href={site.social.review}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Google Reviews"
-                  className="h-11 w-11 rounded-sm border border-white/10 grid place-items-center text-brand-light/75 hover:text-brand-gold hover:border-brand-gold/50 hover:-translate-y-0.5 transition-all duration-200"
-                >
-                  <Star className="h-4 w-4" />
-                </a>
-                <a
-                  href={site.social.review}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ml-2 text-sm text-brand-light/70 hover:text-brand-gold underline-offset-4 hover:underline"
-                >
-                  Leave a Google review
-                </a>
               </div>
             </div>
           </motion.div>

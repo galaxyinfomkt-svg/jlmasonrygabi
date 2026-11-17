@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowRight, BadgeCheck, MapPin, Phone, ShieldCheck, Star } from "lucide-react";
-import { site } from "@/lib/site";
+import { hicLabel, site } from "@/lib/site";
 import LeadConnectorForm from "./LeadConnectorForm";
 
 /**
@@ -47,7 +47,7 @@ export default function Hero() {
               </span>
               <span className="h-3 w-px bg-white/40" />
               <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-white">
-                <ShieldCheck className="h-3.5 w-3.5" /> MA HIC Registered
+                <ShieldCheck className="h-3.5 w-3.5" /> {hicLabel ?? "Locally Owned"}
               </span>
               <span className="h-3 w-px bg-white/40" />
               <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-white">
@@ -84,17 +84,7 @@ export default function Hero() {
             </div>
 
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <div className="flex items-center gap-2">
-                <div className="flex" aria-label="5 star rating">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <Star key={i} className="h-5 w-5 fill-brand-red text-brand-red" />
-                  ))}
-                </div>
-                <span className="text-sm text-brand-light/90">
-                  <span className="font-bold text-brand-light">{site.rating.value}</span> ·{" "}
-                  {site.rating.count}+ Google reviews
-                </span>
-              </div>
+              <span className="text-sm text-brand-light/90">Free on-site estimate</span>
               <span className="hidden sm:inline h-4 w-px bg-white/20" />
               <span className="text-xs text-brand-light/80">
                 No deposit · No pressure

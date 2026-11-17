@@ -18,6 +18,38 @@ export type GeneratedCityService = {
   keywords: string[];
 };
 
+/** Pick the seeded variant, but fall back to the first one that fits `max`. */
+function pickFit(
+  variants: string[],
+  seed: string,
+  salt: string,
+  max: number,
+  fallback: string,
+) {
+  const preferred = pick(variants, seed, salt);
+  if (preferred.length <= max) return preferred;
+  return firstFit([...variants, fallback], max);
+}
+
+/** First variant that fits `max` characters (last one as a fallback). */
+function firstFit(variants: string[], max: number) {
+  return variants.find((v) => v.length <= max) ?? variants[variants.length - 1];
+}
+
+/** Search-friendly service noun for titles ("Chimney" → "Chimney Repair"). */
+export const TITLE_LABEL: Record<string, string> = {
+  patios: "Patio Installation",
+  "stone-walls": "Stone Walls",
+  walkways: "Walkways",
+  chimneys: "Chimney Repair",
+  "retaining-walls": "Retaining Walls",
+  sidewalks: "Concrete Sidewalks",
+  "residential-masonry": "Residential Masonry",
+  "commercial-masonry": "Commercial Masonry",
+  "custom-projects": "Custom Masonry",
+  hardscape: "Hardscaping",
+};
+
 // Pick deterministically using a hash of the slugs so the same combo always
 // produces the same output (good for crawlers + caching).
 function hash(s: string) {
@@ -54,7 +86,7 @@ export function generateCityService(
 
   // Subheadline variants
   const subVariants = [
-    `Serving ${neighborhood}, ${altNeighborhood}, and all of ${city.name}, ${city.state}. MA HIC registered, insured, and built to last every Massachusetts winter.`,
+    `Serving ${neighborhood}, ${altNeighborhood}, and all of ${city.name}, ${city.state}. Built to last every Massachusetts winter.`,
     `From ${neighborhood} to ${altNeighborhood} — we build ${svc.searchPhrasePlural} that hold up to ${city.county} County's freeze-thaw cycles.`,
     `${city.name} homeowners choose JL Masonry for ${svc.searchPhrasePlural} that look right and last decades — not seasons.`,
     `Hand-laid ${svc.searchPhrasePlural} for ${city.name}, ${city.state} — built by the same crew that quotes the job, on the schedule we sign for.`,
@@ -73,7 +105,7 @@ export function generateCityService(
   const whyLocalVariants = [
     `We're based in Woburn and reach ${city.name} on a regular schedule. That means same-day callbacks, on-site estimates within 48 hours, and crews that know which materials handle ${city.county} County conditions best.`,
     `JL Masonry has been serving ${city.name} homeowners for over 15 years. Our crews understand the ${city.architectureStyle.split(",")[0].toLowerCase()} aesthetic that dominates ${neighborhood}, and we stock material samples that match ${city.name}'s historic vocabulary.`,
-    `Choosing a ${svc.shortLabel.toLowerCase()} contractor in ${city.name} means choosing someone who'll show up. We do. MA HIC registered and insured — and the same crew you meet at the estimate is the crew that builds the project.`,
+    `Choosing a ${svc.shortLabel.toLowerCase()} contractor in ${city.name} means choosing someone who'll show up. We do — and the same crew you meet at the estimate is the crew that builds the project.`,
   ];
   const whyLocal = pick(whyLocalVariants, seed, "w");
 
@@ -134,19 +166,32 @@ export function generateCityService(
   const closingPitch = pick(closingVariants, seed, "c");
 
   // SEO meta — title under 60 chars, description under 160 chars
+  const label = TITLE_LABEL[svc.slug] ?? svc.shortLabel;
   const metaTitleVariants = [
-    `${svc.shortLabel} ${svc.slug === "patios" ? "Builder" : svc.slug === "chimneys" ? "Repair" : "Contractor"} in ${city.name} MA | JL Masonry`,
-    `${city.name} ${svc.shortLabel} Specialists | JL Masonry & Construction`,
-    `Expert ${svc.shortLabel} in ${city.name}, ${city.state} — Free Estimates`,
+    `${label} in ${city.name}, MA | JL Masonry`,
+    `${city.name} ${label} | JL Masonry & Construction`,
+    `${label} in ${city.name}, ${city.state} — Free Estimates`,
   ];
-  const metaTitle = pick(metaTitleVariants, seed, "mt");
+  const metaTitle = pickFit(
+    metaTitleVariants,
+    seed,
+    "mt",
+    60,
+    `${label} in ${city.name}, MA`,
+  );
 
   const metaDescVariants = [
-    `MA HIC registered ${svc.searchPhrase} serving ${city.name}, ${city.state}. ${svc.searchPhrasePlural[0].toUpperCase() + svc.searchPhrasePlural.slice(1)} built to last every New England winter. Free estimates. Call (617) 913-9845.`,
-    `JL Masonry builds custom ${svc.searchPhrasePlural} in ${city.name}, MA. ${city.county} County's trusted mason. MA HIC registered and insured. Free quote in 48 hours.`,
+    `Local ${svc.searchPhrase} serving ${city.name}, ${city.state}. ${svc.searchPhrasePlural[0].toUpperCase() + svc.searchPhrasePlural.slice(1)} built to last every New England winter. Free estimates. Call (617) 913-9845.`,
+    `JL Masonry builds custom ${svc.searchPhrasePlural} in ${city.name}, MA. ${city.county} County's trusted mason. Free quote in 48 hours.`,
     `Expert ${svc.searchPhrasePlural} for ${city.name} homeowners. Serving ${neighborhood}, ${altNeighborhood} & all of ${city.name}. Call (617) 913-9845 for a free estimate.`,
   ];
-  const metaDescription = pick(metaDescVariants, seed, "md");
+  const metaDescription = pickFit(
+    metaDescVariants,
+    seed,
+    "md",
+    155,
+    `${label} for ${city.name}, MA homes. Free estimate: (617) 913-9845.`,
+  );
 
   // Keywords — local + service combos
   const keywords = [
@@ -186,8 +231,20 @@ export function generateCityOverview(city: City) {
     subheadline: `Hand-built patios, stone walls, walkways, chimneys, and retaining walls for ${city.name} homeowners. Serving ${neighborhood}, ${altNeighborhood}, and all of ${city.name}, ${city.county} County.`,
     intro: `JL Masonry & Construction is the trusted masonry contractor for ${city.name}, ${city.state}. From ${neighborhood} to ${altNeighborhood}, we build ${city.architectureStyle.toLowerCase()}-appropriate stonework, patios, retaining walls, and chimneys. ${city.localProof}.`,
     localContext: `${city.name} (population ${city.population}) sits in ${city.region}. ${city.climateNote}. Our crews are based in Woburn and reach ${city.name} on a regular schedule — usually within 48 hours of your first call.`,
-    metaTitle: `Masonry Contractor in ${city.name}, MA | Patios, Walls & Chimneys | JL Masonry`,
-    metaDescription: `Expert masonry services in ${city.name}, MA. Patios, stone walls, walkways, chimneys, retaining walls & hardscape. Serving ${neighborhood} & all of ${city.name}. Free estimates: (617) 913-9845.`,
+    metaTitle: firstFit(
+      [
+        `Masonry Contractor in ${city.name}, MA | JL Masonry`,
+        `Masonry Contractor in ${city.name}, MA`,
+      ],
+      60,
+    ),
+    metaDescription: firstFit(
+      [
+        `Patios, stone walls, walkways and chimney repair in ${city.name}, MA. Serving ${neighborhood} and all of ${city.name}. Free estimate: (617) 913-9845.`,
+        `Patios, stone walls, walkways and chimney repair in ${city.name}, MA. Free estimate: (617) 913-9845.`,
+      ],
+      155,
+    ),
     keywords: [
       `masonry contractor ${city.name} MA`,
       `mason ${city.name}`,

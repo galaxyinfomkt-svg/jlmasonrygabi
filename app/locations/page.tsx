@@ -9,7 +9,7 @@ import { cities, citiesByRegion, type CityRegion } from "@/lib/cities";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Service Areas — Cities We Serve in Massachusetts | JL Masonry",
+  title: "Towns We Serve in Massachusetts | JL Masonry",
   description: `JL Masonry serves ${cities.length}+ Massachusetts cities across Greater Boston, MetroWest, South Suburban, North Shore, and Central MA. Find your city.`,
   keywords: [
     "masonry contractor Massachusetts service areas",

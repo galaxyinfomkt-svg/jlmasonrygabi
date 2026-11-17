@@ -7,7 +7,7 @@ import { cities, citiesBySlug } from "@/lib/cities";
 import { generateCityOverview } from "@/lib/content-generator";
 import { serviceMeta } from "@/lib/service-meta";
 import { getServicePhotos } from "@/lib/service-images";
-import { site } from "@/lib/site";
+import { hicLabel, site } from "@/lib/site";
 
 // Deterministic per-city og:image. Hashes the city slug and rotates
 // through the available service hero photos so each of the 109 city
@@ -127,7 +127,7 @@ export default async function CityPage({
                 </span>
                 <span className="h-3 w-px bg-brand-red/40" />
                 <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">
-                  <ShieldCheck className="h-3.5 w-3.5" /> MA HIC Registered
+                  <ShieldCheck className="h-3.5 w-3.5" /> {hicLabel ?? "Locally Owned"}
                 </span>
                 <span className="h-3 w-px bg-brand-red/40" />
                 <span className="flex items-center gap-1.5 text-[0.7rem] tracking-[0.2em] uppercase font-bold text-brand-red">
@@ -158,17 +158,7 @@ export default async function CityPage({
               </div>
 
               <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-                <div className="flex items-center gap-2">
-                  <div className="flex">
-                    {[0, 1, 2, 3, 4].map((i) => (
-                      <Star key={i} className="h-5 w-5 fill-brand-red text-brand-red" />
-                    ))}
-                  </div>
-                  <span className="text-sm text-brand-light/85">
-                    <span className="font-bold text-brand-light">{site.rating.value}</span> ·{" "}
-                    {site.rating.count}+ Google reviews
-                  </span>
-                </div>
+                <span className="text-sm text-brand-light/85">Free on-site estimate</span>
                 <span className="hidden sm:inline h-4 w-px bg-white/20" />
                 <span className="text-xs text-brand-light/65">
                   No deposit · No pressure
@@ -284,9 +274,9 @@ export default async function CityPage({
             </dl>
             <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-3 gap-3 text-center">
               {[
-                { icon: BadgeCheck, label: "MA HIC" },
-                { icon: ShieldCheck, label: "Insured" },
-                { icon: Award, label: "15+ yrs" },
+                { icon: BadgeCheck, label: "Free Estimate" },
+                { icon: ShieldCheck, label: "Locally Owned" },
+                { icon: Award, label: "Woburn, MA" },
               ].map(({ icon: Icon, label }) => (
                 <div key={label}>
                   <Icon className="h-5 w-5 text-brand-gold mx-auto" />

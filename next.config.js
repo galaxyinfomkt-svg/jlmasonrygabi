@@ -16,6 +16,17 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
+  async redirects() {
+    return [
+      {
+        // www → apex, so Google sees one version of every page.
+        source: "/:path*",
+        has: [{ type: "host", value: "www.jlmasonryma.com" }],
+        destination: "https://jlmasonryma.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

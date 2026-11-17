@@ -43,8 +43,9 @@
     border-radius: 2px;
   }
 
-  button:focus,
-  a:focus {
+  /* Hide the ring only for mouse clicks; keyboard users keep :focus-visible. */
+  button:focus:not(:focus-visible),
+  a:focus:not(:focus-visible) {
     outline: none;
   }
 

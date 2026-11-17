@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import { site } from "@/lib/site";
+import StickyCallBar from "@/components/StickyCallBar";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -23,10 +24,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.website),
-  title:
-    "Masonry Contractor in Woburn MA | Patios, Stone Walls & Chimneys | JL Masonry",
+  title: "Masonry Contractor in Woburn, MA | JL Masonry",
   description:
-    "JL Masonry & Construction offers expert masonry services in Woburn, MA — patios, stone walls, walkways, chimneys, and hardscaping. Free estimates. Call (617) 913-9845!",
+    "Stone patios, walls, walkways and chimney repair in Woburn and nearby towns. Free on-site estimate. Call (617) 913-9845.",
   keywords: [
     "masonry contractor Woburn MA",
     "patios stone walls Woburn Massachusetts",
@@ -71,8 +71,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="font-sans bg-brand-dark text-brand-light">
+      <body className="font-sans bg-brand-dark text-brand-light pb-16 lg:pb-0">
         {children}
+        <StickyCallBar />
         {/* form_embed.js is only needed once the deferred iframe is mounted —
             lazyOnload pushes it off the critical path. The LeadConnectorForm
             component lazy-mounts the iframe on first user interaction / scroll. */}

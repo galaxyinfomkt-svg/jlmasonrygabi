@@ -28,7 +28,7 @@ export default function HomePage() {
         <CtaBand
           tone="dark"
           heading="Want work like this on your property?"
-          sub="Licensed masonry crew serving Greater Boston."
+          sub="Local masonry crew serving Greater Boston."
         />
         <Testimonials />
         <FAQ />

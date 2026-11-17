@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUp, Facebook, Instagram, Mail, Phone, Star } from "lucide-react";
 import { citiesByRegion, type CityRegion } from "@/lib/cities";
 import { serviceMeta } from "@/lib/service-meta";
-import { site } from "@/lib/site";
+import { hicLabel, site } from "@/lib/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -36,27 +36,8 @@ export default function Footer() {
               {site.tagline}
             </p>
             <p className="mt-4 text-brand-light/60 text-sm leading-relaxed max-w-sm">
-              Locally owned, fully insured, and proudly serving 109+ Massachusetts cities.
+              Locally owned and proudly serving 109+ Massachusetts cities.
             </p>
-
-            <a
-              href={site.social.review}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-3 p-3 bg-brand-dark border border-white/10 rounded-sm hover:border-brand-gold/40 hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <div className="flex">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <Star key={i} className="h-4 w-4 fill-brand-gold text-brand-gold" />
-                ))}
-              </div>
-              <div className="text-sm">
-                <div className="text-brand-light font-bold leading-tight">
-                  {site.rating.value} on Google
-                </div>
-                <div className="text-brand-light/55 text-xs">{site.rating.count}+ verified reviews</div>
-              </div>
-            </a>
           </div>
 
           <div>
@@ -93,7 +74,6 @@ export default function Footer() {
                 { href: "/services", label: "All Services" },
                 { href: "/locations", label: "Service Areas" },
                 { href: "/#gallery", label: "Gallery" },
-                { href: "/#testimonials", label: "Reviews" },
                 { href: "/#faq", label: "FAQ" },
                 { href: "/#contact", label: "Contact" },
               ].map((l) => (
@@ -207,15 +187,27 @@ export default function Footer() {
           <div>
             © {year} {site.name}. All rights reserved.
           </div>
-          <div className="flex items-center gap-5">
-            <span>MA HIC Registered · Fully Insured</span>
-            <span className="hidden sm:inline">·</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            {hicLabel && (
+              <>
+                <span>{hicLabel}</span>
+                <span className="hidden sm:inline">·</span>
+              </>
+            )}
             <Link href="/locations" className="hover:text-brand-gold transition">
               Service Areas
             </Link>
             <span className="hidden sm:inline">·</span>
             <Link href="/services" className="hover:text-brand-gold transition">
               Services
+            </Link>
+            <span className="hidden sm:inline">·</span>
+            <Link href="/privacy-policy" className="hover:text-brand-gold transition">
+              Privacy
+            </Link>
+            <span className="hidden sm:inline">·</span>
+            <Link href="/terms" className="hover:text-brand-gold transition">
+              Terms
             </Link>
           </div>
         </div>

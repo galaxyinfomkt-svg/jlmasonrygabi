@@ -1,21 +1,15 @@
 import { faqs, services, site } from "@/lib/site";
+import { BUSINESS_ID } from "@/lib/schema";
 import { hasRealReviews, realReviews } from "@/lib/reviews";
-
-// Set this to true ONLY when site.rating mirrors the actual public Google
-// Business Profile (currently 47 reviews / 5.0 average per site.ts). With
-// the GBP offline (per Jonildo) we can't verify those numbers right now,
-// so the home-page LocalBusiness ships without aggregateRating until
-// someone flips this back on.
-// TODO(Luiz): set to true once GBP is restored and the rating is verified.
-const RATING_VERIFIED = false;
 
 export default function JsonLd() {
   const localBusiness = {
     "@context": "https://schema.org",
-    "@type": ["GeneralContractor", "LocalBusiness"],
-    "@id": `${site.website}#business`,
+    "@type": ["HomeAndConstructionBusiness", "GeneralContractor"],
+    "@id": BUSINESS_ID,
     name: site.name,
     alternateName: site.shortName,
+    legalName: "J L Masonry & Construction, LLC",
     image: `${site.website}/assets/logo.png`,
     logo: `${site.website}/assets/logo.png`,
     url: site.website,
@@ -23,9 +17,9 @@ export default function JsonLd() {
     email: site.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: site.address.street,
       addressLocality: site.address.city,
       addressRegion: site.address.region,
+      postalCode: site.address.postalCode,
       addressCountry: site.address.country,
     },
     areaServed: {
@@ -42,21 +36,18 @@ export default function JsonLd() {
       },
     ],
     priceRange: "$$",
-    sameAs: [site.social.facebook, site.social.instagram],
-    // aggregateRating + review are only emitted when we have a verified
-    // source. Shipping fabricated/placeholder reviews as schema.org markup
-    // is grounds for a manual action and an FTC issue — see lib/reviews.ts.
-    ...(RATING_VERIFIED
+    founder: { "@type": "Person", name: "Jonildo Leitão", jobTitle: "Owner" },
+    ...(site.hic
       ? {
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: site.rating.value,
-            reviewCount: site.rating.count.toString(),
-            bestRating: "5",
-            worstRating: "1",
+          hasCredential: {
+            "@type": "EducationalOccupationalCredential",
+            credentialCategory: "Massachusetts Home Improvement Contractor Registration",
+            identifier: site.hic,
           },
         }
       : {}),
+    sameAs: [site.social.facebook, site.social.instagram, site.social.bbb],
+    // Review markup only from real, dated reviews in lib/reviews.ts.
     ...(hasRealReviews
       ? {
           review: realReviews.map((r) => ({
