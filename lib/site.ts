@@ -2,7 +2,9 @@ import {
   Building2,
   Construction,
   Cog,
+  Flame,
   Footprints,
+  Hammer,
   Home,
   Layers,
   Mountain,
@@ -51,6 +53,22 @@ export const site = {
    * dated reviews to lib/reviews.ts once the Google profile is back.
    */
   hic: null as string | null,
+  /**
+   * Owner. The audit found "Jonildo" nowhere on the site, while every search
+   * for the company surfaces him — the About page and the schema now name him.
+   */
+  owner: "Jonildo Leitão",
+  ownerFirstName: "Jonildo",
+  /**
+   * OWNER TO CONFIRM (audit item 7): the site said "since 2010 · 15+ years",
+   * the BBB profile lists the LLC as started 11/05/2017 and Facebook says
+   * "over 10 years". Three different numbers in three places is what made the
+   * audit flag it. One source of truth now: `llcFounded` is the public record
+   * (BBB), `tradeSince` is the year Jonildo says he started laying stone and
+   * still needs his confirmation before it is used as a headline claim.
+   */
+  llcFounded: 2017,
+  tradeSince: 2010,
 } as const;
 
 /** Hero/footer label for the HIC registration, or null while unconfirmed. */
@@ -145,6 +163,32 @@ export const services: ServiceItem[] = [
       "Complete hardscape solutions to transform your outdoor environment.",
     image: "/assets/gallery/sidewalks.jpg", // paver driveway with stone border
     icon: Cog,
+  },
+  // Added Nov/2026 after the audit: the three pages every local competitor
+  // already had. No city x service pages for these (see lib/service-meta.ts).
+  {
+    slug: "brick-repointing",
+    title: "Brick Repointing",
+    description:
+      "Failed mortar joints cut out and repointed with matched mortar, before water gets into the wall.",
+    image: "/assets/gallery/walkways.jpg", // chimney rebuild in progress
+    icon: Hammer,
+  },
+  {
+    slug: "steps",
+    title: "Granite & Stone Steps",
+    description:
+      "Front steps and stoops in granite, bluestone and brick, set on a base that survives our winters.",
+    image: "/assets/about.jpg", // granite steps beside a fieldstone wall
+    icon: Footprints,
+  },
+  {
+    slug: "fire-pits",
+    title: "Fire Pits & Outdoor Fireplaces",
+    description:
+      "Stone fire pits, seating walls and outdoor fireplaces built into the patio, with a firebrick interior.",
+    image: "/assets/gallery/g-21.jpg", // paver patio where a fire feature goes
+    icon: Flame,
   },
 ];
 

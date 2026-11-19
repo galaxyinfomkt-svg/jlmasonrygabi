@@ -48,6 +48,9 @@ export const TITLE_LABEL: Record<string, string> = {
   "commercial-masonry": "Commercial Masonry",
   "custom-projects": "Custom Masonry",
   hardscape: "Hardscaping",
+  "brick-repointing": "Brick Repointing",
+  steps: "Granite & Stone Steps",
+  "fire-pits": "Stone Fire Pits",
 };
 
 // Pick deterministically using a hash of the slugs so the same combo always

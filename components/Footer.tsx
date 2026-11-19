@@ -70,10 +70,11 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm text-brand-light/65">
               {[
                 { href: "/", label: "Home" },
-                { href: "/#about", label: "About" },
+                { href: "/about", label: "About Us" },
                 { href: "/services", label: "All Services" },
                 { href: "/locations", label: "Service Areas" },
                 { href: "/#gallery", label: "Gallery" },
+                { href: "/blog", label: "Blog" },
                 { href: "/#faq", label: "FAQ" },
                 { href: "/#contact", label: "Contact" },
               ].map((l) => (

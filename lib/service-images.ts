@@ -144,8 +144,49 @@ export const servicePhotos: Record<string, ServicePhotos> = {
       { src: "/assets/gallery/about-2.jpg", alt: "Hardscape patio with timber gazebo overhead", caption: "Patio + gazebo hardscape" },
     ],
   },
+
+  // === BRICK REPOINTING — mortar repair and restoration ===
+  // Restoration work in progress; captions say exactly what each photo shows.
+  "brick-repointing": {
+    hero: {
+      src: "/assets/gallery/walkways.jpg",
+      alt: "JL Masonry crew rebuilding a stone chimney from scaffolding on a Massachusetts home",
+    },
+    gallery: [
+      { src: "/assets/gallery/walkways.jpg", alt: "Mason rebuilding a chimney from scaffolding on a residential roof", caption: "Chimney rebuild in progress" },
+      { src: "/assets/gallery/g-18.jpg", alt: "Stoop rebuild before-during-after photo collage for a multi-family home", caption: "Stoop rebuild — before, during, after" },
+      { src: "/assets/gallery/g-14.jpg", alt: "Tall stacked-stone chimney with tight, tooled mortar joints", caption: "Stone chimney with tooled joints" },
+    ],
+  },
+
+  // === STEPS — granite, bluestone and brick entries ===
+  steps: {
+    hero: {
+      src: "/assets/about.jpg",
+      alt: "Granite steps and landing beside a fieldstone wall with granite caps, built by JL Masonry in Massachusetts",
+    },
+    gallery: [
+      { src: "/assets/about.jpg", alt: "Granite steps and landing next to a fieldstone wall capped in granite", caption: "Granite steps with fieldstone wall" },
+      { src: "/assets/gallery/g-19.jpg", alt: "Granite stoop with brick risers and matching step on a residential entry", caption: "Granite stoop with brick risers" },
+      { src: "/assets/gallery/g-22.jpg", alt: "Stone wall with integrated granite steps in a salt-and-pepper finish", caption: "Stone wall with granite steps" },
+      { src: "/assets/gallery/g-17.jpg", alt: "Granite-tile front stoop with brick riser detail", caption: "Granite-tile stoop" },
+    ],
+  },
+
+  // === FIRE PITS — no photo of a completed fire feature yet ===
+  // Empty hero on purpose: the page renders the branded header until Jonildo
+  // sends photos of a finished fire pit or outdoor fireplace.
+  "fire-pits": {
+    hero: { src: "", alt: "" },
+    gallery: [],
+  },
 };
 
+/**
+ * Added Nov/2026: an empty `hero.src` makes the service page render its
+ * branded dark header instead of a photo. Showing an unrelated project is
+ * exactly the mismatch the audit flagged, so a missing photo stays missing.
+ */
 export function getServicePhotos(slug: string): ServicePhotos {
   return (
     servicePhotos[slug] || {

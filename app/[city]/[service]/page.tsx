@@ -16,7 +16,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { cities, citiesBySlug } from "@/lib/cities";
-import { serviceMeta, serviceMetaBySlug } from "@/lib/service-meta";
+import { cityServiceMeta, serviceMetaBySlug } from "@/lib/service-meta";
 import { generateCityService } from "@/lib/content-generator";
 import { getServicePhotos } from "@/lib/service-images";
 import { hicLabel, site } from "@/lib/site";
@@ -29,8 +29,11 @@ import QuoteModal from "@/components/QuoteModal";
 
 export function generateStaticParams() {
   const params: { city: string; service: string }[] = [];
+  // Services flagged `cityPages: false` stay out: the site already carries
+  // 1,090 near-identical city x service URLs and the audit is to shrink that
+  // set, not grow it with every new service.
   for (const c of cities) {
-    for (const s of serviceMeta) {
+    for (const s of cityServiceMeta) {
       params.push({ city: c.slug, service: s.slug });
     }
   }
@@ -82,14 +85,15 @@ export default async function CityServicePage({
   const { city: citySlug, service: serviceSlug } = await params;
   const city = citiesBySlug.get(citySlug);
   const svc = serviceMetaBySlug.get(serviceSlug);
-  if (!city || !svc) notFound();
+  // A service without city pages has no /[city]/[service] URL at all.
+  if (!city || !svc || svc.cityPages === false) notFound();
 
   const c = generateCityService(city, svc);
   const photos = getServicePhotos(svc.slug);
   const url = `${site.website}/${city.slug}/${svc.slug}`;
 
   // Related services in same city
-  const relatedServices = serviceMeta.filter((s) => s.slug !== svc.slug).slice(0, 5);
+  const relatedServices = cityServiceMeta.filter((s) => s.slug !== svc.slug).slice(0, 5);
   // Same service in nearby cities
   const nearbyCities = cities
     .filter((cc) => cc.region === city.region && cc.slug !== city.slug)

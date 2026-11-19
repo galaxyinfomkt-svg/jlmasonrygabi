@@ -31,7 +31,7 @@ export default function About() {
             <div className="relative aspect-[4/5] rounded-sm overflow-hidden border border-white/10 shadow-warm">
               <Image
                 src="/assets/about.jpg"
-                alt={`${site.name} masonry craftsman at work in Woburn, MA`}
+                alt="Granite steps and landing beside a fieldstone wall with granite caps, built by JL Masonry in Massachusetts"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 quality={70}
@@ -39,8 +39,13 @@ export default function About() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent" />
             </div>
+            {/* One number, derived from one source (lib/site.ts), so the site
+                stops showing "since 2010", "15+ years" and the BBB date as
+                three different claims. */}
             <div className="hidden lg:flex absolute -top-5 -right-5 items-center gap-3 bg-brand-gold text-brand-dark px-5 py-4 rounded-sm shadow-gold-sm border border-brand-gold-deep/30">
-              <div className="font-display text-3xl font-bold leading-none">15+</div>
+              <div className="font-display text-3xl font-bold leading-none">
+                {new Date().getFullYear() - site.tradeSince}
+              </div>
               <div className="text-[0.65rem] uppercase tracking-[0.18em] leading-tight font-bold">
                 Years
                 <br />
@@ -85,11 +90,11 @@ export default function About() {
               className="mt-7 space-y-5 text-brand-light/75 text-lg leading-relaxed text-pretty max-w-xl"
             >
               <p>
-                Locally trusted since 2010, JL Masonry &amp; Construction
-                brings 15+ years of hands-on experience to every project. From
-                custom stone patios and retaining walls to chimney repairs and
-                commercial hardscaping, our team delivers durable, beautiful
-                masonry work that stands the test of time.
+                {site.name} is run by {site.owner}, laying stone and brick in
+                Massachusetts since {site.tradeSince} and running the company out
+                of Woburn since {site.llcFounded}. From custom stone patios and
+                retaining walls to chimney repairs and commercial hardscaping, you
+                deal directly with the people doing the work.
               </p>
               <p>
                 Based in Woburn, MA and serving 109+ cities across Eastern

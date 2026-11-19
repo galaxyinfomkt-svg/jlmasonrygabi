@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Award, BadgeCheck, MapPin, Phone, ShieldCheck, Star } from "lucide-react";
 import { cities, citiesBySlug } from "@/lib/cities";
 import { generateCityOverview } from "@/lib/content-generator";
-import { serviceMeta } from "@/lib/service-meta";
+import { cityServiceMeta } from "@/lib/service-meta";
 import { getServicePhotos } from "@/lib/service-images";
 import { hicLabel, site } from "@/lib/site";
 
@@ -19,7 +19,7 @@ function ogImageForCity(citySlug: string): string {
     h = (h << 5) - h + citySlug.charCodeAt(i);
     h |= 0;
   }
-  const svc = serviceMeta[Math.abs(h) % serviceMeta.length];
+  const svc = cityServiceMeta[Math.abs(h) % cityServiceMeta.length];
   return getServicePhotos(svc.slug).hero.src;
 }
 import Header from "@/components/Header";
@@ -312,7 +312,7 @@ export default async function CityPage({
           </div>
 
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {serviceMeta.map((s) => (
+            {cityServiceMeta.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={`/${city.slug}/${s.slug}`}

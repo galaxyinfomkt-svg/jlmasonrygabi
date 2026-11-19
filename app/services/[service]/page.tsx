@@ -70,7 +70,7 @@ export async function generateMetadata({
       siteName: site.name,
       type: "website",
       locale: "en_US",
-      images: [photos.hero.src],
+      images: [photos.hero.src || "/assets/hero.jpg"],
     },
   };
 }
@@ -88,6 +88,7 @@ export default async function ServicePage({
   const photos = getServicePhotos(svc.slug);
 
   const topCities = cities.slice(0, 12);
+  const hasCityPages = svc.cityPages !== false;
 
   const faqSchema = svc.faqs.length > 0 && {
     "@context": "https://schema.org",
@@ -161,14 +162,18 @@ export default async function ServicePage({
         aria-labelledby="srv-h"
       >
         <div className="absolute inset-0 -z-10">
-          <Image
-            src={photos.hero.src}
-            alt={photos.hero.alt}
-            fill
-            sizes="100vw"
-            priority
-            className="object-cover animate-kenburns"
-          />
+          {/* No photo of this service yet → branded header, never a photo of
+              different work (audit: photo/alt mismatches cost trust). */}
+          {photos.hero.src && (
+            <Image
+              src={photos.hero.src}
+              alt={photos.hero.alt}
+              fill
+              sizes="100vw"
+              priority
+              className="object-cover animate-kenburns"
+            />
+          )}
           <div className="absolute inset-0 bg-[rgba(15,15,15,0.35)]" />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/55 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-dark" />
@@ -455,11 +460,15 @@ export default async function ServicePage({
               <ul className="space-y-2 text-sm">
                 {topCities.map((c) => (
                   <li key={c.slug}>
+                    {/* Services without city pages link to the town hub, so
+                        the sidebar never points at a URL that 404s. */}
                     <Link
-                      href={`/${c.slug}/${svc.slug}`}
+                      href={hasCityPages ? `/${c.slug}/${svc.slug}` : `/${c.slug}`}
                       className="flex items-center justify-between gap-3 py-1.5 text-brand-light/75 hover:text-brand-red transition group"
                     >
-                      <span>{svc.shortLabel} in {c.name}</span>
+                      <span>
+                        {hasCityPages ? `${svc.shortLabel} in ${c.name}` : c.name}
+                      </span>
                       <ArrowRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition" />
                     </Link>
                   </li>

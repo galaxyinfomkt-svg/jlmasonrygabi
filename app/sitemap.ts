@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { cities } from "@/lib/cities";
-import { serviceMeta } from "@/lib/service-meta";
+import { blogPosts } from "@/lib/blog";
+import { cityServiceMeta, serviceMeta } from "@/lib/service-meta";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -26,6 +27,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${base}/about`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${base}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
     ...["privacy-policy", "terms"].map((path) => ({
       url: `${base}/${path}`,
       lastModified: now,
@@ -33,6 +46,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.2,
     })),
   ];
+
+  // Blog posts
+  for (const p of blogPosts) {
+    entries.push({
+      url: `${base}/blog/${p.slug}`,
+      lastModified: p.updated ?? p.date,
+      changeFrequency: "monthly",
+      priority: 0.65,
+    });
+  }
 
   // Service pages
   for (const s of serviceMeta) {
@@ -56,7 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // City × Service combos (the programmatic SEO bulk)
   for (const c of cities) {
-    for (const s of serviceMeta) {
+    for (const s of cityServiceMeta) {
       entries.push({
         url: `${base}/${c.slug}/${s.slug}`,
         lastModified: now,

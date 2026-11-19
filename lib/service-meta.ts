@@ -17,6 +17,13 @@ export type ServiceMeta = {
   inspectionPoints: string[];
   whyNow: string;
   faqs: Array<{ q: string; a: string }>;
+  /**
+   * false = the service gets its own /services page but no city x service
+   * pages. Services added after the Nov/2026 audit start this way: the site
+   * already has 1,090 near-identical city x service URLs, and item 4 of the
+   * audit is to cut that number, not grow it.
+   */
+  cityPages?: boolean;
 };
 
 export const serviceMeta: ServiceMeta[] = [
@@ -408,6 +415,138 @@ export const serviceMeta: ServiceMeta[] = [
       { q: "Do you coordinate landscape and planting?", a: "We coordinate with landscape designers and install plant-bed edging and grade transitions. We focus on the hard surfaces and structures; planting partners handle softscape." },
     ],
   },
+
+  // Added Nov/2026 after the site audit: the three service pages every local
+  // competitor has and JL did not. No city x service pages (see cityPages).
+  {
+    slug: "brick-repointing",
+    shortLabel: "Repointing",
+    longLabel: "Brick Repointing & Tuckpointing",
+    searchPhrase: "brick repointing contractor",
+    searchPhrasePlural: "repointing projects",
+    cityPages: false,
+    problems: [
+      "Mortar joints are recessed, sandy or crumbling when you scratch them with a key",
+      "Water shows up inside the house along a chimney breast or an exterior brick wall",
+      "Brick faces are flaking or popping off (spalling) after years of freeze-thaw",
+      "A previous repair used hard Portland mortar on soft old brick and the brick is now breaking instead of the joint",
+      "White efflorescence staining keeps coming back on the wall",
+    ],
+    materials: [
+      "Type N mortar for most residential brick",
+      "Type O / lime-based mortar for soft, pre-1930 brick",
+      "Color-matched sand and pigment to match existing joints",
+      "Replacement brick matched by size, color and texture",
+      "Breathable masonry water repellent where appropriate",
+    ],
+    durationTypical: "2–5 working days for a chimney; 1–2 weeks for a full wall elevation",
+    costRange: "$1,500–$5,000 for a typical chimney; wall repointing priced by square foot after inspection",
+    bestSeason: "April through November — mortar needs temperatures above 40°F to cure properly",
+    lifespan: "25–50+ years when the mortar is matched to the brick",
+    regulatoryNote: "Repointing rarely needs a building permit, but historic district commissions in several MA towns review mortar color and joint profile before work starts.",
+    inspectionPoints: [
+      "Joint depth: cut out at least 2× the joint width, never grind into the brick face",
+      "Mortar hardness matched to the brick, softer than the brick itself",
+      "Joint profile tooled to match the original (concave, struck, raked)",
+      "Cause of the water first: crown, cap, flashing or gutters before the joints",
+      "Spalled brick replaced, not just skimmed over",
+    ],
+    whyNow: "Open joints take on water all winter. Every freeze expands that water and pushes the brick apart, so a joint you could repoint this fall becomes a rebuild in two or three winters.",
+    faqs: [
+      { q: "What is the difference between repointing and tuckpointing?", a: "Repointing is cutting out failed mortar and replacing it. Tuckpointing is a finishing technique that uses two mortar colors to make joints look thin and crisp. Most homeowners asking for tuckpointing actually need repointing, and that is what we quote." },
+      { q: "How do I know if my brick needs repointing?", a: "Scratch a joint with a key or a screwdriver. If mortar crumbles out easily, or you can see gaps and recessed joints from the ground, it is time. Water stains inside near a chimney are another sign." },
+      { q: "Can you match my existing mortar color?", a: "Yes. We match the sand and tool the joint to the same profile so the repair does not read as a patch. Old mortar has usually weathered, so we match the weathered color, not the original." },
+      { q: "Why can't you just use regular hard mortar?", a: "On old, soft brick, hard Portland mortar is stronger than the brick. The wall still moves, and the brick face breaks instead of the joint. We use a softer, lime-based mix on older masonry — it costs the same and protects the brick." },
+      { q: "Should I repoint or rebuild?", a: "If the brick is sound and only the joints have failed, repoint. If the wall or chimney leans, bulges, or the brick itself is spalling across large areas, rebuilding the affected section is the only repair that lasts. We tell you which one you have, with photos." },
+    ],
+  },
+  {
+    slug: "steps",
+    shortLabel: "Steps",
+    longLabel: "Granite & Stone Steps",
+    searchPhrase: "granite steps contractor",
+    searchPhrasePlural: "steps and stoops",
+    cityPages: false,
+    problems: [
+      "Front steps have settled, so one riser is now taller than the others and people trip",
+      "Steps have pulled away from the house, leaving a gap at the top landing",
+      "Concrete treads are cracked, spalling or flaking from ice melt and salt",
+      "Brick stoop joints have washed out and the treads rock underfoot",
+      "No safe handrail, or a railing that is loose because the masonry around it failed",
+    ],
+    materials: [
+      "Solid granite slab treads and platforms",
+      "Bluestone treads with a thermal (non-slip) finish",
+      "Brick risers with granite caps",
+      "Fieldstone veneer to match an existing wall or foundation",
+      "Precast concrete steps where budget drives the choice",
+    ],
+    durationTypical: "2–4 working days for a typical front entry",
+    costRange: "Priced per project after an on-site visit — size, access, material and whether the base has to be rebuilt drive the number",
+    bestSeason: "April through November; granite sets can go in later in the season than mortared work",
+    lifespan: "Granite: 50–100 years. Brick and mortared stone: 30–50 years.",
+    regulatoryNote: "Massachusetts building code sets maximum riser height and minimum tread depth, and requires a graspable handrail on four or more risers. Towns review entry steps when they change the footprint or encroach on a setback.",
+    inspectionPoints: [
+      "Footing below the frost line (4 feet in most of Eastern MA) or on compacted structural fill",
+      "Consistent riser heights — the single biggest cause of falls",
+      "Pitch on every tread so water runs off instead of freezing on it",
+      "Positive drainage away from the foundation, not toward it",
+      "Handrail anchors set into solid masonry, not into mortar joints",
+    ],
+    whyNow: "Steps are the one part of your masonry everyone in the house uses every day, in the dark and on ice. Settlement only gets worse with each freeze, and the longer the base moves the more of the entry has to come apart to fix it.",
+    faqs: [
+      { q: "Why do my front steps keep settling?", a: "Almost always the base. If the footing sits above the frost line or on loose fill, water under it freezes and lifts the steps, then they drop unevenly in the thaw. Resetting the stone without fixing the base buys a season or two at best." },
+      { q: "Granite or bluestone for steps in Massachusetts?", a: "Granite is the most durable choice for our winters and handles salt and plows better. Bluestone looks beautiful and works well with a thermal finish for traction. We bring samples so you can see both against the house." },
+      { q: "Can you reuse my existing granite?", a: "Often yes. Old granite slabs are worth saving — we lift them, rebuild the base and reset them level. That usually costs less than new stone and keeps the look of the house." },
+      { q: "Do I need a railing?", a: "Massachusetts code requires a graspable handrail once you have four or more risers. We set the anchors into solid stone while we build, which is far stronger than drilling into mortar later." },
+      { q: "Will ice melt damage new steps?", a: "Rock salt (sodium chloride) and many ice melts attack concrete and mortar joints. On granite it is far less of an issue. We will tell you which product is safe for what we build." },
+    ],
+  },
+  {
+    slug: "fire-pits",
+    shortLabel: "Fire Pits",
+    longLabel: "Stone Fire Pits & Outdoor Fireplaces",
+    searchPhrase: "fire pit builder",
+    searchPhrasePlural: "fire pits and outdoor fireplaces",
+    cityPages: false,
+    problems: [
+      "The patio goes unused from September because there is nowhere warm to sit",
+      "A portable steel fire bowl is scorching and staining the pavers underneath",
+      "A big-box fire pit kit was set straight on the patio and the blocks are already shifting",
+      "There is nowhere to sit around the fire, so everyone drags chairs across the stone",
+      "Smoke blows back into the seating area because the fireplace was built without thinking about the draft",
+    ],
+    materials: [
+      "Firebrick and refractory mortar for the interior",
+      "Natural fieldstone and granite for the visible face",
+      "Wall block systems (Techo-Bloc, Unilock, Belgard)",
+      "Granite or bluestone caps and hearths",
+      "Gas ring, key valve and sleeved line where the town allows it",
+    ],
+    durationTypical: "2–4 working days for a fire pit with a seating wall; 1–2 weeks for a full outdoor fireplace",
+    costRange: "Priced per project after an on-site visit — size, material, seating wall and gas provision drive the number",
+    bestSeason: "Design in winter, build in early spring so the feature is ready for the first warm weekend",
+    lifespan: "25–50+ years with a firebrick interior and a proper footing",
+    regulatoryNote: "Massachusetts towns set their own rules on open flame, clearance to structures and property lines, and gas lines are connected by a licensed gas fitter. We check your town's requirements before we build.",
+    inspectionPoints: [
+      "Compacted base or poured footing under the whole feature, not just under the ring",
+      "Firebrick interior — regular pavers and wall block crack under direct heat",
+      "Clearance from the house, fences, trees and overhangs per the local fire department",
+      "Roughly 7 feet of clear patio around the pit so chairs pull back safely",
+      "Drainage so water does not sit inside the pit and freeze",
+    ],
+    whyNow: "Fire features are the one hardscape upgrade that adds months to how long your patio is usable each year. Booking the design in the winter means your project is first in line when the ground opens up in spring.",
+    faqs: [
+      { q: "Wood-burning or gas?", a: "Wood gives the fire and the smell people picture, and costs less to build. Gas lights instantly, makes no smoke, and suits tighter lots and stricter towns. We build both and will tell you which fits your yard and your town's rules." },
+      { q: "Do I need a permit for a fire pit in Massachusetts?", a: "It depends on the town and on whether gas is involved. Clearance to the house, the property line and anything combustible varies by local fire department. We check before we build, and a licensed gas fitter makes any gas connection." },
+      { q: "Can you add a fire pit to the patio I already have?", a: "Usually yes. We cut in the footing, build the feature and re-lay the surrounding stone so the tie-in does not look like a patch." },
+      { q: "How much space does a fire pit need?", a: "Plan on about 7 feet of clear surface around the pit so chairs can pull back without hitting the edge. We lay it out on the ground during the estimate so you can see the real footprint before anything is built." },
+      { q: "Will the stone crack from the heat?", a: "Not if it is built right. The interior is firebrick set in refractory mortar, which is what takes the heat; the natural stone or block outside stays cool enough to last. Kits that skip the firebrick are the ones that crack." },
+    ],
+  },
 ];
 
 export const serviceMetaBySlug = new Map(serviceMeta.map((s) => [s.slug, s]));
+
+/** Services that also get /[city]/[service] pages. */
+export const cityServiceMeta = serviceMeta.filter((s) => s.cityPages !== false);
